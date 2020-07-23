@@ -9,6 +9,7 @@ let attractors = [];
 
 let force;
 let gravityForce;
+const scl = 0.5;
 
 
 
@@ -52,7 +53,7 @@ let a = [{
 const c = {
   gravity: {
     a: 100,
-    b: 50,
+    b: 100,
   },
   qty: 10,
   maxSpeed: 15,
@@ -62,12 +63,12 @@ const c = {
   sclDistance: 1,
 };
 
-let mh = 160;
-let ms = "80%";
-let ml = "40%";
-let ma = 0.5;
-
-
+function mousePressed() {
+  run = !run;
+  if (run === true) {
+    loop();
+  }
+}
 
 function setup() {
 
@@ -85,6 +86,7 @@ function setup() {
 
   //attractor and mover both take (mass, size) as args.
   attractor = new Attractor(50, 50, 0.5, 0.5, attractorColor, c.gravity.a);
+  attractor2 = new Attractor(50, 50, 0.5, 0.5, attractorColor, c.gravity.b);
 
 
   let j = 0;
@@ -101,18 +103,10 @@ function setup() {
 
 
 
-
-}
-
-function mousePressed() {
-  run = !run;
-  if (run === true) {
-    loop();
-  }
-
 }
 
 function draw() {
+  translate(width / 2, height / 2);
   if (run === true) {
     background(258, 33, 21, 1);
 
@@ -124,7 +118,7 @@ function draw() {
     })
 
     movers2.forEach(mover => {
-      gravityForce = attractor.attracts(mover);
+      gravityForce = attractor2.attracts(mover);
       mover.applyForce(gravityForce);
       mover.update();
       mover.display();

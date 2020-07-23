@@ -51,6 +51,7 @@ class Mover {
 
 
     let speed = this.velocity.mag();
+    speed *= c.sclDistance;
     if (speed > topSpeed) {
       this.velocity.normalize();
       this.velocity.mult(topSpeed);
@@ -93,7 +94,7 @@ class Mover {
     // fill(50);
 
 
-    ellipse(this.location.x, this.location.y, this.size, this.size);
+    ellipse(this.location.x * scl, this.location.y * scl, this.size * scl, this.size * scl);
 
   }
 }
