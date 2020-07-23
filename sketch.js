@@ -2,7 +2,8 @@
 
 let attractor, mover;
 let scale = 1;
-let movers = []
+let movers1 = []
+let movers2 = []
 let run = true;
 let attractors = [];
 
@@ -12,6 +13,11 @@ let gravityForce;
 
 
 let s = [{    //constants
+  mass: 60,
+  size: 30,
+  initialSpeed: 15,
+},
+{    //constants
   mass: 60,
   size: 30,
   initialSpeed: 15,
@@ -25,7 +31,7 @@ let a = [{
 },
 {
   mass: 50,
-  size: 70,
+  size: 20,
   x: 0.8,
   y: 0.5,
 },
@@ -44,14 +50,22 @@ let a = [{
 
 
 const c = {
-  gravity: 100,
-  qty: 30,
+  gravity: {
+    a: 100,
+    b: 50,
+  },
+  qty: 10,
   maxSpeed: 15,
   minDistance: 50,
   maxDistance: 100,
   topSpeed: 15,
-  sclDistance: 10,
+  sclDistance: 1,
 };
+
+let mh = 160;
+let ms = "80%";
+let ml = "40%";
+let ma = 0.5;
 
 
 
@@ -59,20 +73,35 @@ function setup() {
 
   colorMode(HSB)
 
-  let moverColor = color('hsla(160,  80%, 40%, 0.5)');
-  let attractorColor = color('hsla(160,  80%, 40%, 0.5)');
+
 
   createCanvas(windowWidth, windowHeight);
-
+  //background(258, 33, 21, 1);
+  let mover1Color = color('hsla(320,  80%, 40%, 0.5)');
+  let mover2Color = color('hsla(160,  80%, 40%, 0.5)');
+  let mover3Color = color('hsla(50,  80%, 40%, 0.5)');
+  let attractorColor = color('hsla(160,  80%, 40%, 0.5)');
 
 
   //attractor and mover both take (mass, size) as args.
-  attractor = new Attractor(50, 50, 0.5, 0.5, attractorColor);
+  attractor = new Attractor(50, 50, 0.5, 0.5, attractorColor, c.gravity.a);
+
+
+  let j = 0;
+  for (let i = 0; i < c.qty; i++) {
+    let mover = new Mover(s[j].mass, s[j].size, s[j].initialSpeed, mover1Color);  //The mover taks mass, size, and inital speed as arguments.
+    movers1.push(mover);
+  }
+  j = 1;
 
   for (let i = 0; i < c.qty; i++) {
-    let mover = new Mover(s[0].mass, s[0].size, s[0].initialSpeed, moverColor);  //The mover taks mass, size, and inital speed as arguments.
-    movers.push(mover);
+    let mover = new Mover(s[j].mass, s[j].size, s[j].initialSpeed, mover2Color);  //The mover taks mass, size, and inital speed as arguments.
+    movers2.push(mover);
   }
+
+
+
+
 }
 
 function mousePressed() {
@@ -87,7 +116,14 @@ function draw() {
   if (run === true) {
     background(258, 33, 21, 1);
 
-    movers.forEach(mover => {
+    movers1.forEach(mover => {
+      gravityForce = attractor.attracts(mover);
+      mover.applyForce(gravityForce);
+      mover.update();
+      mover.display();
+    })
+
+    movers2.forEach(mover => {
       gravityForce = attractor.attracts(mover);
       mover.applyForce(gravityForce);
       mover.update();

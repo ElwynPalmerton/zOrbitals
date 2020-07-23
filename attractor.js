@@ -1,15 +1,15 @@
 class Attractor {
-  constructor(mass, size, x, y, attractorColor) {
+  constructor(mass, size, x, y, attractorColor, gravity) {
     this.mass = mass;
     this.size = size;
     this.location = createVector(x * width, y * height);
     this.attractorColor = attractorColor;
+    this.gravity = gravity;
   }
 
   attracts(mover) {
     //force = Gravity * mass1 * mass2 / dist squared * r.normalized.
-
-    const g = c.gravity;
+    const g = this.gravity;
     const minDistance = c.minDistance;
     const maxDistance = c.maxDistance;
 

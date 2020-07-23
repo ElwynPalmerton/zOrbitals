@@ -28,13 +28,13 @@ class Mover {
     let force = p5.Vector.sub(this.location, mover.location);
 
     let distance = force.copy();
-    distance = distance.mag() * c.sclDistance;
+    distance = distance.mag();
     distance = constrain(distance, minDistance, maxDistance);
 
     force.normalize();
 
 
-    let strength = (g * this.mass * mover.mass) / (distance * distance);
+    let strength = (g * this.mass * mover.mass) / (distance * distance * c.sclDistance);
     force.mult(strength);
 
     return force;
@@ -85,8 +85,10 @@ class Mover {
   }
 
   display() {
+
     // console.log(this.location);
     noStroke();
+    // fill(color('hsla(160,  80%, 40%, 0.5)'));
     fill(this.col);
     // fill(50);
 
