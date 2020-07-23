@@ -1,16 +1,17 @@
 class Attractor {
-  constructor(mass, size) {
+  constructor(mass, size, x, y, attractorColor) {
     this.mass = mass;
     this.size = size;
-    this.location = createVector(width / 2, height / 2);
+    this.location = createVector(x * width, y * height);
+    this.attractorColor = attractorColor;
   }
 
   attracts(mover) {
     //force = Gravity * mass1 * mass2 / dist squared * r.normalized.
 
-    const g = 30;
-    const minDistance = 50;
-    const maxDistance = 100;
+    const g = c.gravity;
+    const minDistance = c.minDistance;
+    const maxDistance = c.maxDistance;
 
 
     let force = p5.Vector.sub(this.location, mover.location);
@@ -30,7 +31,7 @@ class Attractor {
 
   display() {
     noStroke();
-    fill(50);
+    fill(this.attractorColor);
     ellipse(this.location.x, this.location.y, this.size, this.size);
   }
 }
