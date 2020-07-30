@@ -3,19 +3,24 @@
 
 let attractor, mover;
 let scale = 1;
-let movers1 = []
-let movers2 = []
+
+let movers = []
+let tempMovers = [];
+let moverSet = []
+
+let movers1 = [];
+let movers2 = [];
 let run = true;
 let attractors = [];
 
-let force;
-let gravityForce;
+// let force; ---Not being used.
+let gravityForce; //This is used in draw to pass the force to movers.
 const scl = 0.5;
 
 
 //Refactor the Attractor and mover objects into a separate function which is called from setup. 
 //Put color values into that object.
-//THe the requisite constants into each object in the Attractor object.
+//The the requisite constants into each object in the Attractor object.
 //Movers can be turned into an array of arrays. Or an array of objects - each with an array and some other values.
 //
 //Encapsulate the object creation and object updating loops into a function.
@@ -48,13 +53,13 @@ let s = [{    //constants
 
 let a = [{
   mass: 100,
-  size: 50,
+  size: 200,
   x: 0.5,
   y: 0.5,
 },
 {
   mass: 50,
-  size: 20,
+  size: 100,
   x: 0.8,
   y: 0.5,
 }];
@@ -64,10 +69,10 @@ const c = {
   //These should go in the attractor object.
   gravity: {
     a: 50,
-    b: 100,
+    b: 50,
   },
   qty: 10,
-  sclDistance: 1,  
+  sclDistance: 1,
   //These do not need to go in the attractor object.
   maxSpeed: 5,
   minDistance: 50,
@@ -92,13 +97,33 @@ function setup() {
   //background(258, 33, 21, 1);
   let mover1Color = color('hsla(320,  80%, 40%, 0.5)');
   let mover2Color = color('hsla(160,  80%, 40%, 0.5)');
+  let moverColors = [];
+
+  moverColors.push(mover1Color);
+  moverColors.push(mover2Color);
+
   let mover3Color = color('hsla(50,  80%, 40%, 0.5)');
   let attractorColor = color('hsla(160,  80%, 40%, 0.5)');
 
 
   //attractor and mover both take (mass, size) as args.
-  attractor = new Attractor(50, 50, 0.5, 0.5, attractorColor, c.gravity.a);
-  attractor2 = new Attractor(50, 50, 0.5, 0.5, attractorColor, c.gravity.b);
+
+  function createAttractor(a) {
+
+    for (let i = 0; i < a.length; i++) {
+      attractor = new Attractor(a[i].mass, a[i].size, a[i].x, a[i].y, attractorColor, c.gravity.a);
+      attractors.push(attractor);
+    }
+    console.log(attractors);
+
+    attractor2 = new Attractor(50, 50, 0.5, 0.5, attractorColor, c.gravity.b);
+
+  }
+
+  createAttractor(a);
+
+
+
 
   //Refactor each group into a loop.
   //Put the attractor in an array and create that in the same function.
@@ -122,30 +147,49 @@ function setup() {
   }
 
 
-
+  for (let i = 0; i < s.length; i++) {
+    for (let j = 0; j < c.qty; j++) {
+      //The mover taks mass, size, and inital speed as arguments.
+      let mover = new Mover(s[i].mass, s[i].size, s[i].initialSpeed, moverColors[i]);
+      tempMovers.push(mover);
+    }
+    moverSet.push(tempMovers);
+  }
+  console.log(moverSet);
 }
+
+
+
 
 function draw() {
   translate(width / 2, height / 2);
   if (run === true) {
     background(258, 33, 21, 1);
 
-    movers1.forEach(mover => {
-      gravityForce = attractor.attracts(mover);
-      mover.applyForce(gravityForce);
-      mover.update();
-      mover.display();
-    })
+    for (let i = 0; i < attractors.length; i++) {
+      moverSet[i].forEach(mover => {
+        gravityForce = attractors[i].attracts(mover);
+        mover.applyForce(gravityForce);
+        mover.update();
+        mover.display();
+      })
+      attractors[i].display();
+    }
 
-    movers2.forEach(mover => {
-      gravityForce = attractor2.attracts(mover);
-      mover.applyForce(gravityForce);
-      mover.update();
-      mover.display();
+    // movers1.forEach(mover => {
+    //   gravityForce = attractor.attracts(mover);
+    //   mover.applyForce(gravityForce);
+    //   mover.update();
+    //   mover.display();
+    // })
 
-    })
+    // movers2.forEach(mover => {
+    //   gravityForce = attractor2.attracts(mover);
+    //   mover.applyForce(gravityForce);
+    //   mover.update();
+    //   mover.display();
 
-    attractor.display();
+    // })
 
   } else {
     noLoop();
