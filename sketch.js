@@ -52,14 +52,14 @@ let s = [{    //constants
 }];
 
 let a = [{
-  mass: 100,
-  size: 200,
+  mass: 50,
+  size: 50,
   x: 0.5,
   y: 0.5,
 },
 {
   mass: 50,
-  size: 100,
+  size: 50,
   x: 0.8,
   y: 0.5,
 }];
@@ -91,14 +91,12 @@ function setup() {
 
   colorMode(HSB)
 
-
-
   createCanvas(windowWidth, windowHeight);
   //background(258, 33, 21, 1);
   let mover1Color = color('hsla(320,  80%, 40%, 0.5)');
   let mover2Color = color('hsla(160,  80%, 40%, 0.5)');
-  let moverColors = [];
 
+  let moverColors = [];
   moverColors.push(mover1Color);
   moverColors.push(mover2Color);
 
@@ -114,7 +112,6 @@ function setup() {
       attractor = new Attractor(a[i].mass, a[i].size, a[i].x, a[i].y, attractorColor, c.gravity.a);
       attractors.push(attractor);
     }
-    console.log(attractors);
 
     attractor2 = new Attractor(50, 50, 0.5, 0.5, attractorColor, c.gravity.b);
 
@@ -134,17 +131,17 @@ function setup() {
   //Then build (ctrl+c) a sequencer like in bouncing-balls.
   //This is will take a mover and attractor preset and launch a new constellation.
 
-  let j = 0;  //refactor this into a loop.
-  for (let i = 0; i < c.qty; i++) {
-    let mover = new Mover(s[j].mass, s[j].size, s[j].initialSpeed, mover1Color);  //The mover taks mass, size, and inital speed as arguments.
-    movers1.push(mover);
-  }
+  // let j = 0;  //refactor this into a loop.
+  // for (let i = 0; i < c.qty; i++) {
+  //   let mover = new Mover(s[j].mass, s[j].size, s[j].initialSpeed, mover1Color);  //The mover taks mass, size, and inital speed as arguments.
+  //   movers1.push(mover);
+  // }
 
-  j = 1;
-  for (let i = 0; i < c.qty; i++) {
-    let mover = new Mover(s[j].mass, s[j].size, s[j].initialSpeed, mover2Color);  //The mover taks mass, size, and inital speed as arguments.
-    movers2.push(mover);
-  }
+  // j = 1;
+  // for (let i = 0; i < c.qty; i++) {
+  //   let mover = new Mover(s[j].mass, s[j].size, s[j].initialSpeed, mover2Color);  //The mover taks mass, size, and inital speed as arguments.
+  //   movers2.push(mover);
+  // }
 
 
   for (let i = 0; i < s.length; i++) {
@@ -154,6 +151,7 @@ function setup() {
       tempMovers.push(mover);
     }
     moverSet.push(tempMovers);
+    tempMovers = [];
   }
   console.log(moverSet);
 }
@@ -175,21 +173,6 @@ function draw() {
       })
       attractors[i].display();
     }
-
-    // movers1.forEach(mover => {
-    //   gravityForce = attractor.attracts(mover);
-    //   mover.applyForce(gravityForce);
-    //   mover.update();
-    //   mover.display();
-    // })
-
-    // movers2.forEach(mover => {
-    //   gravityForce = attractor2.attracts(mover);
-    //   mover.applyForce(gravityForce);
-    //   mover.update();
-    //   mover.display();
-
-    // })
 
   } else {
     noLoop();
