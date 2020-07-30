@@ -13,9 +13,7 @@ class Attractor {
     const minDistance = c.minDistance;
     const maxDistance = c.maxDistance;
 
-
     let force = p5.Vector.sub(this.location, mover.location);
-
 
     let distance = force.copy();
     distance = distance.mag();

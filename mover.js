@@ -1,6 +1,5 @@
 class Mover {
 
-
   constructor(mass = 200, size = 50, startSpeed = 20, col) {
     //Create vector
     // const startSpeed = 10;
@@ -19,11 +18,9 @@ class Mover {
 
   attracts(mover) {
     //force = Gravity * mass1 * mass2 / dist squared * r.normalized.
-
     const g = c.gravity;
     const minDistance = c.minDistance;
     const maxDistance = c.maxDistance;
-
 
     let force = p5.Vector.sub(this.location, mover.location);
 
@@ -32,7 +29,6 @@ class Mover {
     distance = constrain(distance, minDistance, maxDistance);
 
     force.normalize();
-
 
     let strength = (g * this.mass * mover.mass) / (distance * distance * c.sclDistance);
     force.mult(strength);
@@ -48,8 +44,6 @@ class Mover {
 
     this.velocity.add(this.acceleration);
 
-
-
     let speed = this.velocity.mag();
     speed *= c.sclDistance;
     if (speed > topSpeed) {
@@ -59,7 +53,6 @@ class Mover {
 
     this.location.add(this.velocity);
     this.acceleration.mult(0);
-
   }
 
 
@@ -68,8 +61,6 @@ class Mover {
     // Add the force to the acceleration.
     f = f.div(this.mass);
     this.acceleration.add(f);
-
-
   }
 
   //Not currently used.
@@ -86,15 +77,11 @@ class Mover {
   }
 
   display() {
-
     // console.log(this.location);
     noStroke();
     // fill(color('hsla(160,  80%, 40%, 0.5)'));
     fill(this.col);
     // fill(50);
-
-
     ellipse(this.location.x * scl, this.location.y * scl, this.size * scl, this.size * scl);
-
   }
 }
