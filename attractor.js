@@ -28,7 +28,7 @@ class Attractor {
 
   display() {
     noStroke();
-    fill(this.attractorColor);
+    fill(this.attractorColor.h, this.attractorColor.s, this.attractorColor.l, this.attractorColor.a);
     ellipse(this.location.x * scl, this.location.y * scl, this.size * scl, this.size * scl);
   }
 }

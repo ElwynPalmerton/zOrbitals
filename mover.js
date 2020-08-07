@@ -9,7 +9,7 @@ class Mover {
     this.mass = mass;
     this.size = size;
 
-    this.location = createVector(random(width), random(height));
+    this.location = createVector(random(-width, width), random(-height, height));
 
     this.velocity = createVector(random(-startSpeed, startSpeed), random(-startSpeed, startSpeed));
 
@@ -80,7 +80,8 @@ class Mover {
     // console.log(this.location);
     noStroke();
     // fill(color('hsla(160,  80%, 40%, 0.5)'));
-    fill(this.col);
+    fill(this.col.h, this.col.s, this.col.l, this.col.a);
+    // fill(this.col);
     // fill(50);
     ellipse(this.location.x * scl, this.location.y * scl, this.size * scl, this.size * scl);
   }

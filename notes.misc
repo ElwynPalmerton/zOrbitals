@@ -1,0 +1,21 @@
+//Refactor the Attractor and mover objects into a separate function which is called from setup. 
+//Put color values into that object.
+
+
+//The the requisite constants into each object in the Attractor object.
+
+//
+//Encapsulate the object creation and object updating loops into a function.
+//This function should take an element from the array of Attractor objects.
+//It should take all of the arguments which Mover and Attractor take, plus a qty.
+//
+//
+//Encapsulate the hsla color values so that they can be saved in an array of four values. 
+//
+//How do I design the sequencing pattern? 
+//Create a function which calls setTimeout. 
+//Each time it calls the next entry in an array.
+//The new values create a "target" and the program increments/decrements the existing value over the duration of the interval defined in the function call.
+//Maybe this should be implement in a Hello World version first.
+
+
