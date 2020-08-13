@@ -89,21 +89,30 @@ function createConstellation(s, a, moverCol, type) {
     let moverColor = Object.assign({}, moverCol);
 
     if (type === "size-variation") {
-      let variation = random(0.7, 1.3);
+      let variation = random(0.8, 1.2);
       s.mass = s.mass * variation;
       s.size = s.size * variation;
     } else if (type === "size-color-variation") {
-      let variation = random(0.7, 1.3);
+      let variation = random(0.8, 1.2);
       s.mass = s.mass * variation;
       s.size = s.size * variation;
 
       let colorVariation = Math.floor(random(-20, 20));
-      //moverColor.h = moverColor.h + colorVariation;
+      moverColor.h = moverColor.h + colorVariation;
+      moverColor.l = moverColor.l + colorVariation / 2;
 
     }
 
-    let mover = new FadeMover(s.mass, s.size, c.initialSpeed, moverColor);
-    tempMovers.push(mover);
+    let coin = random(1) < 0.2;
+
+    if (coin) {
+      let mover = new BlinkMover(s.mass, s.size, c.initialSpeed, moverColor);
+      tempMovers.push(mover);
+    } else {
+      let mover = new FadeMover(s.mass, s.size, c.initialSpeed, moverColor);
+      tempMovers.push(mover);
+    }
+
   }
   moverSet.push(tempMovers);
 

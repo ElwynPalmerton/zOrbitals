@@ -20,34 +20,46 @@ let sequenceMovers = [
   {
     mass: 50,
     size: 180,
-    qty: 5,
+    qty: 15,
   },
   {
     mass: 25,
     size: 180,
-    qty: 5,
+    qty: 8,
   },
   {
     mass: 15,
     size: 200,
-    qty: 5,
+    qty: 8,
   },
   //Red one
   {
     mass: 40,
     size: 120,
-    qty: 1,
+    qty: 4,
   },
   //Yellow pair
   {
-    mass: 30,
-    size: 100,
-    qty: 2,
+    mass: 40,
+    size: 150,
+    qty: 7,
+  },
+  {
+    mass: 40,
+    size: 150,
+    qty: 7,
   },
 ];
 
 let sequenceAttractors = [
   //background
+  {
+    mass: 50,
+    size: 70,
+    x: 0.5,
+    y: 0.5,
+    gravity: 30,
+  },
   {
     mass: 50,
     size: 70,
@@ -93,19 +105,19 @@ let sequenceAttractors = [
   },
   //Red one
   {
-    mass: 50,
+    mass: 35,
     size: 140,
     x: 0.25,
     y: 0.75,
-    gravity: 100,
+    gravity: 80,
   },
   //Yellow one
   {
-    mass: 50,
+    mass: 30,
     size: 120,
     x: 0.25,
     y: 0.75,
-    gravity: 70,
+    gravity: 50,
   },
 
 ];
@@ -128,7 +140,7 @@ moverCols = [
   {
     h: 200,
     s: 20,
-    l: 30,
+    l: 60,
     a: 0.2
   },
 
@@ -136,34 +148,40 @@ moverCols = [
   {
     h: 220,
     s: 80,
-    l: 100,
+    l: 85,
     a: 0.7
   },
   {
     h: 220,
     s: 80,
-    l: 70,
-    a: 0.4
+    l: 85,
+    a: 0.8
   },
   {
     h: 260,
     s: 80,
-    l: 70,
-    a: 0.5
+    l: 85,
+    a: 0.6
   },
   //Red one
   {
-    h: 360,
+    h: 305,
     s: 100,
     l: 100,
-    a: .5
+    a: .75
   },
   //Yellow Pair
   {
-    h: 90,
+    h: 63,
     s: 90,
     l: 100,
-    a: 0.5
+    a: 0.75
+  },
+  {
+    h: 146,
+    s: 80,
+    l: 90,
+    a: 0.75
   },
   // {
   //   h: 300,

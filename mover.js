@@ -88,31 +88,7 @@ class Mover {
   }
 }
 
-class blinkMover extends Mover {
-  constructor(mass = 200, size = 100, startSpeed = 20, col) {
-    super(mass = 200, size, startSpeed = 20, col);
-    this.i = 0;
-    this.color = this.col;
-    this.blinkInterval = random(100, 300);
-    this.disappearedColor = {
-      h: 0,
-      s: 0,
-      l: 0,
-      a: 0
-    }
-    //super();
-  }
 
-  update() {
-    this.i++;
-    super.update();
-    if (this.i % this.blinkInterval < this.blinkInterval / 2) {
-      this.col = this.color;
-    } else {
-      this.col = this.disappearedColor;
-    }
-  }
-}
 
 
 class FadeMover extends Mover {
@@ -144,6 +120,32 @@ class FadeMover extends Mover {
       this.increasing = false;
     } else if (this.col.s <= this.minSaturation) {
       this.increasing = true;
+    }
+  }
+}
+
+class BlinkMover extends FadeMover {
+  constructor(mass = 200, size = 100, startSpeed = 20, col) {
+    super(mass = 200, size, startSpeed = 20, col);
+    this.i = 0;
+    this.color = this.col;
+    this.blinkInterval = random(100, 300);
+    this.disappearedColor = {
+      h: 0,
+      s: 0,
+      l: 0,
+      a: 0
+    }
+    //super();
+  }
+
+  update() {
+    this.i++;
+    super.update();
+    if (this.i % this.blinkInterval < this.blinkInterval / 2) {
+      this.col = this.color;
+    } else {
+      this.col = this.disappearedColor;
     }
   }
 }
