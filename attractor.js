@@ -2,6 +2,10 @@ class Attractor {
   constructor(mass, size, x, y, attractorColor, gravity) {
     this.mass = mass;
     this.size = size;
+
+    let xPos = x;
+    let yPos = y;
+
     this.location = createVector(0, 0);
     this.attractorColor = attractorColor;
     this.gravity = gravity;
@@ -20,7 +24,7 @@ class Attractor {
     distance = constrain(distance, minDistance, maxDistance);
     force.normalize();
 
-    let strength = (g * this.mass * mover.mass) / (distance * distance);
+    let strength = (this.gravity * this.mass * mover.mass) / (distance * distance);
     force.mult(strength);
 
     return force;

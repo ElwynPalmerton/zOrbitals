@@ -1,13 +1,14 @@
 class Mover {
 
-  constructor(mass = 200, size = 50, startSpeed = 20, col) {
+  constructor(mass = 200, size = 100, startSpeed = 20, col) {
     //Create vector
     // const startSpeed = 10;
     const defaultAcceleration = 0;
 
+
     this.col = col;
     this.mass = mass;
-    this.size = size;
+    this.size = size * scale;
 
     this.location = createVector(random(-width, width), random(-height, height));
 
@@ -86,3 +87,66 @@ class Mover {
     ellipse(this.location.x * scl, this.location.y * scl, this.size * scl, this.size * scl);
   }
 }
+
+class blinkMover extends Mover {
+  constructor(mass = 200, size = 100, startSpeed = 20, col) {
+    super(mass = 200, size, startSpeed = 20, col);
+    this.i = 0;
+    this.color = this.col;
+    this.blinkInterval = random(100, 300);
+    this.disappearedColor = {
+      h: 0,
+      s: 0,
+      l: 0,
+      a: 0
+    }
+    //super();
+  }
+
+  update() {
+    this.i++;
+    super.update();
+    if (this.i % this.blinkInterval < this.blinkInterval / 2) {
+      this.col = this.color;
+    } else {
+      this.col = this.disappearedColor;
+    }
+  }
+}
+
+
+class FadeMover extends Mover {
+  constructor(mass = 200, size = 100, startSpeed = 20, col) {
+    const saturationVariance = 50;
+    super(mass = 200, size, startSpeed = 20, col);
+    this.saturationChangeRate = random(0, 1);
+    this.i = 0;
+    this.col.s = 50;
+    this.minSaturation = 0;
+    this.maxSaturation = 100;
+    this.increasing = true;
+    // this.fadeInterval = random(100, 300);
+
+  }
+
+  update() {
+
+
+    this.i++;
+    super.update();
+    if (this.increasing === true) {
+      this.col.s += this.saturationChangeRate;
+    } else {
+      this.col.s -= this.saturationChangeRate;
+    }
+
+    if (this.col.s >= this.maxSaturation) {
+      this.increasing = false;
+    } else if (this.col.s <= this.minSaturation) {
+      this.increasing = true;
+    }
+  }
+}
+
+//Make a faderMover
+//Randomize the selection of movers within each group.

@@ -2,7 +2,7 @@
 //Make more layers, scale the dots 
 
 let attractor, mover;
-let scale = 1;
+let scale = 2;
 let i = 0;
 
 let tempMovers = [];
@@ -13,7 +13,7 @@ let attractors = [];
 
 // let force; ---Not being used.
 let gravityForce; //This is used in draw to pass the force to movers.
-const scl = 0.4;
+const scl = 0.1;
 
 
 let s = [{    //constants
@@ -40,18 +40,21 @@ let a = [{
   size: 70,
   x: 0.5,
   y: 0.5,
+  gravity: 50,
 },
 {
-  mass: 30,
+  mass: 100,
   size: 40,
   x: 0.8,
   y: 0.5,
+  gravity: 50,
 },
 {
-  mass: 15,
+  mass: 80,
   size: 50,
   x: 0.8,
   y: 0.5,
+  gravity: 50,
 }];
 
 
@@ -75,20 +78,34 @@ function mousePressed() {
   }
 }
 
-function createConstellation(s, a, moverCols, i) {
+function createConstellation(s, a, moverCol, type) {
   //Create attractor.
-  attractor = new Attractor(a[i].mass, a[i].size, a[i].x, a[i].y, moverCols[0], c.gravity);
+  attractor = new Attractor(a.mass, a.size, a.x, a.y, moverCols[0], a.gravity);
   attractors.push(attractor);
 
   //Create all the movers for that attractor.
-  for (let j = 0; j < s[i].qty; j++) {
+  for (let j = 0; j < s.qty; j++) {
     //mass, size, inital speed, and color.
-    let mover = new Mover(s[i].mass, s[i].size, c.initialSpeed, moverCols[i]);
+    let moverColor = Object.assign({}, moverCol);
+
+    if (type === "size-variation") {
+      let variation = random(0.7, 1.3);
+      s.mass = s.mass * variation;
+      s.size = s.size * variation;
+    } else if (type === "size-color-variation") {
+      let variation = random(0.7, 1.3);
+      s.mass = s.mass * variation;
+      s.size = s.size * variation;
+
+      let colorVariation = Math.floor(random(-20, 20));
+      //moverColor.h = moverColor.h + colorVariation;
+
+    }
+
+    let mover = new FadeMover(s.mass, s.size, c.initialSpeed, moverColor);
     tempMovers.push(mover);
   }
   moverSet.push(tempMovers);
-
-  console.log(moverSet);
 
   tempMovers = [];
 }
@@ -100,8 +117,8 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   //background(258, 33, 21, 1);
 
-  for (let i = 0; i < s.length; i++) {
-    createConstellation(s, a, moverCols, i);
+  for (let i = 0; i < 0; i++) {
+    createConstellation(s[i], a[i], moverCols[i], i, "normal");
   }
 
   sequencing();

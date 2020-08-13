@@ -1,4 +1,4 @@
-//Refactor the Attractor and mover objects into a separate function which is called from setup. 
+
 //Put color values into that object.
 
 
