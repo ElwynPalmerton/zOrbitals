@@ -1,4 +1,4 @@
-class blinker {
+class Blinker {
   constructor() {
     this.size = random(2.5, 5);
     this.glimmer = true;
@@ -13,14 +13,11 @@ class blinker {
       a: 1
     }
 
-    let randomColor = Math.floor(random(0, 360));
+    let randomColor = Math.floor(random(0, 50));
     this.color.h = randomColor;
-
   }
 
   update() {
-
-
     if (this.glimmer) {
       this.size += 0.025;
       this.color.l += 1;
@@ -30,10 +27,7 @@ class blinker {
     }
 
     if (this.size > 5 || this.size < 2.5) this.glimmer = !this.glimmer;
-
-
   }
-
 
   display() {
     noStroke();

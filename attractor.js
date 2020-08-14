@@ -3,8 +3,13 @@ class Attractor {
     this.mass = mass;
     this.size = size;
 
-    //let xPos = x * scale * scl * width;
-    //let yPos = y * scale * scl * height;
+    console.log("x: ", x);
+    console.log("y:", y);
+    let xPos = x * windowWidth;//scale * scl * width;
+    let yPos = y * windowHeight;//scale * scl * height;
+
+    console.log("xPos: ", xPos);
+    console.log("yPos:", yPos);
 
     this.location = createVector(0, 0);
     this.attractorColor = attractorColor;
@@ -33,6 +38,7 @@ class Attractor {
   display() {
     noStroke();
     fill(this.attractorColor.h, this.attractorColor.s, this.attractorColor.l, this.attractorColor.a);
-    ellipse(this.location.x * scl, this.location.y * scl, this.size * scl, this.size * scl);
+    //ellipse(this.location.x * scl, this.location.y * scl, this.size * scl, this.size * scl);
+    ellipse(this.location.x, this.location.y, this.size, this.size);
   }
 }

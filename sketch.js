@@ -16,48 +16,6 @@ let gravityForce; //This is used in draw to pass the force to movers.
 let scl = 0.1;
 
 
-let s = [{    //constants
-  mass: 60,
-  size: 800,
-  initialSpeed: 15,  //initial speed should maybe be a constant
-  qty: 5,
-},
-{    //constants
-  mass: 60,
-  size: 40,
-  initialSpeed: 15,   //initial speed should maybe be a constant.
-  qty: 10,
-},
-{    //constants
-  mass: 60,
-  size: 40,
-  initialSpeed: 15,   //initial speed should maybe be a constant.
-  qty: 10,
-}];
-
-let a = [{
-  mass: 120,
-  size: 70,
-  x: 0.5,
-  y: 0.5,
-  gravity: 50,
-},
-{
-  mass: 100,
-  size: 40,
-  x: 0.8,
-  y: 0.5,
-  gravity: 50,
-},
-{
-  mass: 80,
-  size: 50,
-  x: 0.8,
-  y: 0.5,
-  gravity: 50,
-}];
-
-
 
 const c = {
   //These should go in the attractor object.
@@ -80,7 +38,7 @@ function mousePressed() {
 
 function createConstellation(s, a, moverCol, type) {
   //Create attractor.
-  attractor = new Attractor(a.mass, a.size, a.x, a.y, moverCols[0], a.gravity);
+  attractor = new Attractor(a.mass, a.size, a.x, a.y, moverCol, a.gravity);
   attractors.push(attractor);
 
   //Create all the movers for that attractor.
@@ -97,14 +55,14 @@ function createConstellation(s, a, moverCol, type) {
       s.mass = s.mass * variation;
       s.size = s.size * variation;
 
-      let colorVariation = Math.floor(random(-50, 50));
+      let colorVariation = Math.floor(random(-30, 30));
       moverColor.h = moverColor.h + colorVariation;
       moverColor.l = moverColor.l + 20;
       //moverColor.a = moverColor.a + colorVariation / 10;
 
     }
 
-    let coin = random(1) < 0.6;
+    let coin = random(1) < 0.3;
     let mover;
 
     if (coin) {
@@ -121,12 +79,24 @@ function createConstellation(s, a, moverCol, type) {
 }
 
 let stars = [];
+let shootingStars = [];
+let speed = 10;
 
 function setup() {
 
   for (let i = 0; i < 200; i++) {
-    let star = new blinker();
+    let star = new Blinker();
     stars.push(star);
+  }
+
+  for (let i = 0; i < 30; i++) {
+    let newStar = new DarkStar();
+    shootingStars.push(newStar);
+  }
+
+  for (let i = 0; i < 40; i++) {
+    let newStar = new ShootingStar();
+    shootingStars.push(newStar);
   }
 
   colorMode(HSB)
@@ -134,9 +104,9 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   //background(258, 33, 21, 1);
 
-  for (let i = 0; i < 0; i++) {
-    createConstellation(s[i], a[i], moverCols[i], i, "normal");
-  }
+  // for (let i = 0; i < 0; i++) {
+  //   createConstellation(s[i], a[i], moverCols[i], i, "normal");
+  // }
 
   sequencing();
   //backgroundSequencer();
@@ -224,9 +194,14 @@ function draw() {
         mover.update();
         mover.display();
       })
-      // attractors[i].display();
+      //attractors[i].display();
     }
     stars.forEach(star => {
+      star.update();
+      star.display();
+    });
+
+    shootingStars.forEach(star => {
       star.update();
       star.display();
     })

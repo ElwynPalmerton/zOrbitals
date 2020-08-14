@@ -56,44 +56,44 @@ let sequenceAttractors = [
   {
     mass: 50,
     size: 70,
-    x: 0.1,
-    y: 0.1,
-    gravity: 30,
+    x: 0,
+    y: 0,
+    gravity: 60,
   },
   {
     mass: 50,
     size: 70,
-    x: 0.5,
-    y: 0.5,
-    gravity: 30,
+    x: 0.25,
+    y: 0.25,
+    gravity: 60,
   },
   {
     mass: 50,
     size: 70,
-    x: 0.5,
-    y: 0.5,
-    gravity: 30,
+    x: -0.25,
+    y: -0.25,
+    gravity: 60,
   },
   {
     mass: 50,
     size: 70,
-    x: 0.5,
-    y: 0.5,
+    x: 0.25,
+    y: -0.25,
     gravity: 30,
   },
   //blue layer
   {
     mass: 20,
     size: 140,
-    x: 0.25,
-    y: 0.75,
+    x: -0.25,
+    y: 0.25,
     gravity: 100,
   },
   {
     mass: 25,
     size: 140,
     x: 0.25,
-    y: 0.75,
+    y: -0.25,
     gravity: 75,
   },
   {
@@ -123,73 +123,8 @@ let sequenceAttractors = [
 ];
 
 
-moverCols = [
-  //Dark layer
-  {
-    h: 280,
-    s: 30,
-    l: 80,
-    a: 0.4
-  },
-  {
-    h: 270,
-    s: 30,
-    l: 60,
-    a: 0.2
-  },
-  {
-    h: 260,
-    s: 20,
-    l: 60,
-    a: 0.2
-  },
 
-  //Blue layer
-  {
-    h: 220,
-    s: 80,
-    l: 85,
-    a: 0.7
-  },
-  {
-    h: 220,
-    s: 80,
-    l: 85,
-    a: 0.8
-  },
-  {
-    h: 260,
-    s: 80,
-    l: 85,
-    a: 0.6
-  },
-  //Red one
-  {
-    h: 305,
-    s: 100,
-    l: 100,
-    a: .75
-  },
-  //Yellow Pair
-  {
-    h: 87,
-    s: 90,
-    l: 100,
-    a: 0.75
-  },
-  {
-    h: 146,
-    s: 80,
-    l: 90,
-    a: 0.75
-  },
-  // {
-  //   h: 300,
-  //   s: 80,
-  //   l: 70,
-  //   a: 1
-  // }
-]
+
 
 type = [
   "size-color-variation",
@@ -218,7 +153,8 @@ type = [
 // }
 
 
-function createRandomColor() {
+function createRandomColor(type) {
+  console.log(type);
   let randomColor = {
     h: 0,
     s: 0,
@@ -226,11 +162,34 @@ function createRandomColor() {
     a: 0,
   }
 
-  randomColor.h = Math.floor(random(0, 360));
-  randomColor.s = Math.floor(random(0, 100));
-  randomColor.l = Math.floor(random(0, 100));
-  randomColor.a = random(0, 1);
+  if (type === "size-variation") {
+    console.log("Yellow mover");
+    randomColor.h = Math.floor(random(40, 75));
+    randomColor.l = Math.floor(random(80, 100));
+    randomColor.s = 95//Math.floor(random(75, 100));
+    randomColor.a = 0.75 //random(0, 0.8);
+  } else {
+    randomColor.h = 240;
+    randomColor.l = Math.floor(random(50, 100));
+    randomColor.s = Math.floor(random(30, 100));
+    randomColor.a = random(0, 0.8);
+  }
+
   return randomColor;
+}
+
+function createRandomMovers() {
+  const randomMovers = {
+    mass: 0,
+    size: 0,
+    qty: 0,
+  }
+
+  randomMovers.mass = Math.floor(random(60, 80));
+  randomMovers.size = Math.floor(random(100, 200));
+  randomMovers.qty = Math.floor(random(1, 15));
+  return randomMovers;
+
 }
 
 function sequencing() {
@@ -238,12 +197,23 @@ function sequencing() {
 
   i = i % sequenceMovers.length;
 
+  let coin = random() < 0.2;
+  let newColor;
+  if (coin) {
+    randomType = "size-variation";
+  } else {
+    randomType = "size-color-variation";
+  }
 
-  let newColor = createRandomColor();
+
+  newColor = createRandomColor(randomType);
+
+
+  let newSequenceMovers = createRandomMovers();
   //let newRandomMover = createRandomMovers(scale);
 
 
-  createConstellation(sequenceMovers[i], sequenceAttractors[i], newColor, type[i]);
+  createConstellation(newSequenceMovers, sequenceAttractors[i], newColor, randomType);
 
 
   let intervalTwo = setTimeout(() => {
