@@ -13,12 +13,12 @@ let attractors = [];
 
 // let force; ---Not being used.
 let gravityForce; //This is used in draw to pass the force to movers.
-const scl = 0.1;
+let scl = 0.1;
 
 
 let s = [{    //constants
   mass: 60,
-  size: 40,
+  size: 800,
   initialSpeed: 15,  //initial speed should maybe be a constant
   qty: 5,
 },
@@ -97,21 +97,22 @@ function createConstellation(s, a, moverCol, type) {
       s.mass = s.mass * variation;
       s.size = s.size * variation;
 
-      let colorVariation = Math.floor(random(-20, 20));
+      let colorVariation = Math.floor(random(-50, 50));
       moverColor.h = moverColor.h + colorVariation;
-      moverColor.l = moverColor.l + colorVariation / 2;
+      moverColor.l = moverColor.l + 20;
+      //moverColor.a = moverColor.a + colorVariation / 10;
 
     }
 
-    let coin = random(1) < 0.2;
+    let coin = random(1) < 0.6;
+    let mover;
 
     if (coin) {
-      let mover = new BlinkMover(s.mass, s.size, c.initialSpeed, moverColor);
-      tempMovers.push(mover);
+      mover = new BlinkMover(s.mass, s.size, c.initialSpeed, moverColor);
     } else {
-      let mover = new FadeMover(s.mass, s.size, c.initialSpeed, moverColor);
-      tempMovers.push(mover);
+      mover = new FadeMover(s.mass, s.size, c.initialSpeed, moverColor);
     }
+    tempMovers.push(mover);
 
   }
   moverSet.push(tempMovers);
@@ -119,7 +120,14 @@ function createConstellation(s, a, moverCol, type) {
   tempMovers = [];
 }
 
+let stars = [];
+
 function setup() {
+
+  for (let i = 0; i < 200; i++) {
+    let star = new blinker();
+    stars.push(star);
+  }
 
   colorMode(HSB)
 
@@ -131,15 +139,83 @@ function setup() {
   }
 
   sequencing();
+  //backgroundSequencer();
+}
+let lightnessIncreasing = true;
+let saturationIncreasing = true;
+
+let bgc = {
+  h: 250,
+  s: 30,
+  l: 11,
+  a: 1,
+};
+
+function backgroundSequencer() {
+
+  const bgChangeRate = 0.011;
+  const saturationChangeRate = 0.017;
+  const colorChangeRate = 0.5;
+
+  const lightnessMax = 15;
+  const lightnessMin = 0;
+
+  const saturationMax = 20;
+  const saturationMin = 0;
+
+
+  //setTimer to increment background saturation and then decrement it.
+
+  if (lightnessIncreasing === true) {
+    bgc.l += bgChangeRate;
+  } else {
+    bgc.l -= bgChangeRate;;
+  }
+
+  if (saturationIncreasing === true) {
+    bgc.s += saturationChangeRate;
+  } else {
+    bgc.s -= saturationChangeRate;
+  }
+
+  bgc.h += colorChangeRate;
+  bgc.h = bgc.h % 360;
+
+
+
+  if (bgc.l < lightnessMin) lightnessIncreasing = true;
+  if (bgc.l > lightnessMax) lightnessIncreasing = false;
+
+  if (bgc.s < saturationMin) saturationIncreasing = true;
+  if (bgc.s > saturationMax) saturationIncreasing = false;
+
+  return bgc;
 }
 
 
-
+incrementingScl = true;
 
 function draw() {
+  // if (incrementingScl === true) {
+  //   scl += 0.001;
+  // } else {
+  //   scl -= 0.001;
+  // }
+  // console.log(scl);
+
+  // if (scl > 0.8) {
+  //   incrementingScl = false;
+  // }
+  // if (scl < 0.01) {
+  //   incrementingScl = true;
+  // }
+
+
+
+  let bg = backgroundSequencer();
   translate(width / 2, height / 2);
   if (run === true) {
-    background(258, 33, 21, 1);
+    background(bg.h, bg.s, bg.l, bg.a);
 
     for (let i = 0; i < attractors.length; i++) {
       moverSet[i].forEach(mover => {
@@ -148,8 +224,12 @@ function draw() {
         mover.update();
         mover.display();
       })
-      attractors[i].display();
+      // attractors[i].display();
     }
+    stars.forEach(star => {
+      star.update();
+      star.display();
+    })
 
   } else {
     noLoop();

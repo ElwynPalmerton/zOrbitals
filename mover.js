@@ -7,6 +7,9 @@ class Mover {
 
 
     this.col = col;
+
+
+
     this.mass = mass;
     this.size = size * scale;
 
@@ -31,7 +34,8 @@ class Mover {
 
     force.normalize();
 
-    let strength = (g * this.mass * mover.mass) / (distance * distance * c.sclDistance);
+    // let strength = (g * this.mass * mover.mass) / (distance * distance * c.sclDistance);
+    let strength = (g * this.mass * mover.mass) / (distance * distance);
     force.mult(strength);
 
     return force;
@@ -98,7 +102,7 @@ class FadeMover extends Mover {
     this.saturationChangeRate = random(0, 1);
     this.i = 0;
     this.col.s = 50;
-    this.minSaturation = 0;
+    this.minSaturation = 40;
     this.maxSaturation = 100;
     this.increasing = true;
     // this.fadeInterval = random(100, 300);

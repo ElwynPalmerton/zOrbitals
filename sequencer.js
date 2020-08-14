@@ -4,17 +4,17 @@ let sequenceMovers = [
   {
     mass: 80,
     size: 150,
-    qty: 30,
+    qty: 15,
   },
   {
     mass: 80,
     size: 200,
-    qty: 30,
+    qty: 15,
   },
   {
     mass: 80,
     size: 150,
-    qty: 30,
+    qty: 15,
   },
   //Blue layer
   {
@@ -25,7 +25,7 @@ let sequenceMovers = [
   {
     mass: 25,
     size: 180,
-    qty: 8,
+    qty: 12,
   },
   {
     mass: 15,
@@ -56,8 +56,8 @@ let sequenceAttractors = [
   {
     mass: 50,
     size: 70,
-    x: 0.5,
-    y: 0.5,
+    x: 0.1,
+    y: 0.1,
     gravity: 30,
   },
   {
@@ -126,19 +126,19 @@ let sequenceAttractors = [
 moverCols = [
   //Dark layer
   {
-    h: 300,
-    s: 50,
+    h: 280,
+    s: 30,
     l: 80,
-    a: 0.2
+    a: 0.4
   },
   {
-    h: 300,
-    s: 50,
+    h: 270,
+    s: 30,
     l: 60,
     a: 0.2
   },
   {
-    h: 200,
+    h: 260,
     s: 20,
     l: 60,
     a: 0.2
@@ -172,7 +172,7 @@ moverCols = [
   },
   //Yellow Pair
   {
-    h: 63,
+    h: 87,
     s: 90,
     l: 100,
     a: 0.75
@@ -218,13 +218,32 @@ type = [
 // }
 
 
+function createRandomColor() {
+  let randomColor = {
+    h: 0,
+    s: 0,
+    l: 0,
+    a: 0,
+  }
+
+  randomColor.h = Math.floor(random(0, 360));
+  randomColor.s = Math.floor(random(0, 100));
+  randomColor.l = Math.floor(random(0, 100));
+  randomColor.a = random(0, 1);
+  return randomColor;
+}
 
 function sequencing() {
+
+
   i = i % sequenceMovers.length;
 
+
+  let newColor = createRandomColor();
   //let newRandomMover = createRandomMovers(scale);
 
-  createConstellation(sequenceMovers[i], sequenceAttractors[i], moverCols[i], type[i]);
+
+  createConstellation(sequenceMovers[i], sequenceAttractors[i], newColor, type[i]);
 
 
   let intervalTwo = setTimeout(() => {

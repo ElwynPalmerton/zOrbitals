@@ -3,8 +3,8 @@ class Attractor {
     this.mass = mass;
     this.size = size;
 
-    let xPos = x;
-    let yPos = y;
+    //let xPos = x * scale * scl * width;
+    //let yPos = y * scale * scl * height;
 
     this.location = createVector(0, 0);
     this.attractorColor = attractorColor;
