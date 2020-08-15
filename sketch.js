@@ -14,6 +14,7 @@ let attractors = [];
 // let force; ---Not being used.
 let gravityForce; //This is used in draw to pass the force to movers.
 let scl = 0.1;
+let removeMoverSet = false;
 
 
 
@@ -36,53 +37,14 @@ function mousePressed() {
   }
 }
 
-function createConstellation(s, a, moverCol, type) {
-  //Create attractor.
-  attractor = new Attractor(a.mass, a.size, a.x, a.y, moverCol, a.gravity);
-  attractors.push(attractor);
 
-  //Create all the movers for that attractor.
-  for (let j = 0; j < s.qty; j++) {
-    //mass, size, inital speed, and color.
-    let moverColor = Object.assign({}, moverCol);
-
-    if (type === "size-variation") {
-      let variation = random(0.8, 1.2);
-      s.mass = s.mass * variation;
-      s.size = s.size * variation;
-    } else if (type === "size-color-variation") {
-      let variation = random(0.8, 1.2);
-      s.mass = s.mass * variation;
-      s.size = s.size * variation;
-
-      let colorVariation = Math.floor(random(-30, 30));
-      moverColor.h = moverColor.h + colorVariation;
-      moverColor.l = moverColor.l + 20;
-      //moverColor.a = moverColor.a + colorVariation / 10;
-
-    }
-
-    let coin = random(1) < 0.3;
-    let mover;
-
-    if (coin) {
-      mover = new BlinkMover(s.mass, s.size, c.initialSpeed, moverColor);
-    } else {
-      mover = new FadeMover(s.mass, s.size, c.initialSpeed, moverColor);
-    }
-    tempMovers.push(mover);
-
-  }
-  moverSet.push(tempMovers);
-
-  tempMovers = [];
-}
 
 let stars = [];
 let shootingStars = [];
 let speed = 10;
 
 function setup() {
+  angleMode(RADIANS);
 
   for (let i = 0; i < 200; i++) {
     let star = new Blinker();
@@ -121,46 +83,7 @@ let bgc = {
   a: 1,
 };
 
-function backgroundSequencer() {
 
-  const bgChangeRate = 0.011;
-  const saturationChangeRate = 0.017;
-  const colorChangeRate = 0.5;
-
-  const lightnessMax = 15;
-  const lightnessMin = 0;
-
-  const saturationMax = 20;
-  const saturationMin = 0;
-
-
-  //setTimer to increment background saturation and then decrement it.
-
-  if (lightnessIncreasing === true) {
-    bgc.l += bgChangeRate;
-  } else {
-    bgc.l -= bgChangeRate;;
-  }
-
-  if (saturationIncreasing === true) {
-    bgc.s += saturationChangeRate;
-  } else {
-    bgc.s -= saturationChangeRate;
-  }
-
-  bgc.h += colorChangeRate;
-  bgc.h = bgc.h % 360;
-
-
-
-  if (bgc.l < lightnessMin) lightnessIncreasing = true;
-  if (bgc.l > lightnessMax) lightnessIncreasing = false;
-
-  if (bgc.s < saturationMin) saturationIncreasing = true;
-  if (bgc.s > saturationMax) saturationIncreasing = false;
-
-  return bgc;
-}
 
 
 incrementingScl = true;
@@ -187,7 +110,7 @@ function draw() {
   if (run === true) {
     background(bg.h, bg.s, bg.l, bg.a);
 
-    for (let i = 0; i < attractors.length; i++) {
+    for (let i = 0; i < moverSet.length; i++) {
       moverSet[i].forEach(mover => {
         gravityForce = attractors[i].attracts(mover);
         mover.applyForce(gravityForce);

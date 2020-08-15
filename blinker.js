@@ -1,5 +1,6 @@
 class Blinker {
   constructor() {
+    this.angle = 0;
     this.size = random(2.5, 5);
     this.glimmer = true;
 
@@ -18,6 +19,7 @@ class Blinker {
   }
 
   update() {
+    this.angle += 0.001;
     if (this.glimmer) {
       this.size += 0.025;
       this.color.l += 1;
@@ -30,9 +32,14 @@ class Blinker {
   }
 
   display() {
+    push();
+
+    //rotate(this.angle);
     noStroke();
     let c = this.color
     fill(c.h, c.s, c.l, c.a);
+
     ellipse(this.x, this.y, this.size, this.size);
+    pop();
   }
 }

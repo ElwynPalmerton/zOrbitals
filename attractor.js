@@ -3,13 +3,8 @@ class Attractor {
     this.mass = mass;
     this.size = size;
 
-    console.log("x: ", x);
-    console.log("y:", y);
     let xPos = x * windowWidth;//scale * scl * width;
     let yPos = y * windowHeight;//scale * scl * height;
-
-    console.log("xPos: ", xPos);
-    console.log("yPos:", yPos);
 
     this.location = createVector(0, 0);
     this.attractorColor = attractorColor;
