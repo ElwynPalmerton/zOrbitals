@@ -6,7 +6,6 @@ class Blinker {
 
     this.x = random(-windowWidth / 2, windowWidth / 2);
     this.y = random(-windowHeight / 2, windowHeight / 2);
-    console.log(windowWidth, windowHeight);
     this.color = {
       h: 10,
       s: 30,

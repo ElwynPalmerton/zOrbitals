@@ -37,7 +37,7 @@ class ShootingStar {
 
     var sx =
       map(this.x / this.z, 0, 1, 0, windowWidth) +
-
+      //This is where I should modify the startfield.
       random(-this.variance, this.variance);
     var sy =
       map(this.y / this.z, 0, 1, 0, windowHeight) +

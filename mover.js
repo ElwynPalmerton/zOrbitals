@@ -93,8 +93,6 @@ class Mover {
 }
 
 
-
-
 class FadeMover extends Mover {
   constructor(mass = 200, size = 100, startSpeed = 20, col) {
     const saturationVariance = 50;

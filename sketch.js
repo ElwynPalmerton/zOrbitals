@@ -70,7 +70,8 @@ function setup() {
   //   createConstellation(s[i], a[i], moverCols[i], i, "normal");
   // }
 
-  sequencing();
+  // sequencing();
+  sequencer(0);
   //backgroundSequencer();
 }
 let lightnessIncreasing = true;
