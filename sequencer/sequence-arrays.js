@@ -54,47 +54,47 @@ let sequenceMovers = [
 let sequenceAttractors = [
   //background
   {
-    mass: 50,
+    mass: 25,
     size: 70,
     x: 0,
     y: 0,
-    gravity: 60,
+    gravity: 20,
   },
   {
-    mass: 50,
-    size: 70,
-    x: 0,
-    y: 0,
-    gravity: 60,
-  },
-  {
-    mass: 50,
-    size: 70,
-    x: 0,
-    y: 0,
-    gravity: 60,
-  },
-  {
-    mass: 50,
+    mass: 30,
     size: 70,
     x: 0,
     y: 0,
     gravity: 30,
   },
+  {
+    mass: 35,
+    size: 70,
+    x: 0,
+    y: 0,
+    gravity: 50,
+  },
+  {
+    mass: 50,
+    size: 70,
+    x: 0,
+    y: 0,
+    gravity: 50,
+  },
   //blue layer
   {
-    mass: 20,
+    mass: 50,
     size: 140,
     x: 0,
     y: 0,
     gravity: 100,
   },
   {
-    mass: 25,
+    mass: 60,
     size: 140,
     x: 0,
     y: 0,
-    gravity: 75,
+    gravity: 100,
   },
   {
     mass: 15,
