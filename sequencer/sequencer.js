@@ -28,19 +28,20 @@ defaultAttractor = {
 let score = [
   {
     function: sequenceOne,
-    time: 30000,
+    time: 300000,
   },
-  {
-    function: next,
-    time: 5000,
-  },
-  {
-    function: afterNext,
-    time: 5000,
-  }
-];
+  // ];
+  //   {
+  //     function: next,
+  //     time: 5000,
+  //   },
+  //   {
+  //     function: afterNext,
+  //     time: 5000,
+  //   }
+  // ];
 
-let start = Date.now();
+  let start = Date.now();
 
 
 function sequencer() {
