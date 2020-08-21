@@ -71,7 +71,7 @@ function setup() {
   // }
 
   // sequencing();
-  sequencer(0);
+  sequencer();
   //backgroundSequencer();
 }
 let lightnessIncreasing = true;

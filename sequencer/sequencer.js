@@ -29,19 +29,19 @@ let score = [
   {
     function: sequenceOne,
     time: 300000,
-  },
-  // ];
-  //   {
-  //     function: next,
-  //     time: 5000,
-  //   },
-  //   {
-  //     function: afterNext,
-  //     time: 5000,
-  //   }
-  // ];
+  }];
 
-  let start = Date.now();
+//   {
+//     function: next,
+//     time: 5000,
+//   },
+//   {
+//     function: afterNext,
+//     time: 5000,
+//   }
+// ];
+
+let start = Date.now();
 
 
 function sequencer() {
