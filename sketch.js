@@ -21,7 +21,7 @@ let removeMoverSet = false;
 const c = {
   //These should go in the attractor object.
   gravity: 50,
-  sclDistance: 3,
+  sclDistance: 3,        ///??????
   //These do not need to go in the attractor object.
   initialSpeed: 15,
   maxSpeed: 5,

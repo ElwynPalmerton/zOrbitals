@@ -4,7 +4,6 @@ function reqeatActionsAndStop(actions, repeatInterval, duration) {
   // console.log("Timer: ", i, currentTime);
   let intervalTwo;
   let i = 0;
-  runSequence();
 
   function runSequence() {
     actions();
@@ -13,6 +12,8 @@ function reqeatActionsAndStop(actions, repeatInterval, duration) {
       runSequence();
     }, repeatInterval);
   }
+
+  runSequence();
 
   setTimeout(() => {
     console.log("Clearing");
@@ -27,6 +28,7 @@ function sequenceOne(duration) {
 
   function sequenceOneActions(duraction) {
 
+    //Factor this out into randomType = coin("yellow", "blue");
     let coin = random() < 0.2;
     let newColor;
     if (coin) {
@@ -48,6 +50,8 @@ function sequenceOne(duration) {
         yellowConstellationBuilder.build(newSequenceMovers, sequenceAttractors[i], newColor);
       }
     } else {
+
+      //Where is newConstellation builder defined??????
       newConstellationBuilder.build(newSequenceMovers, defaultAttractor, newColor, randomType);
       moverSet.splice(0, 1);
     }

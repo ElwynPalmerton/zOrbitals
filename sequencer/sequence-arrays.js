@@ -135,19 +135,4 @@ type = [
 
 ]
 
-//movers, attractor, colors, i
-
-// function createRandomMovers(scale) {
-
-//   let mass = Math.floor(random(60, 100));
-
-//   let randomMovers =
-//   {
-//     mass: mass,
-//     size: Math.floor(random(60, 100)),
-//     qty: Math.floor(random(1, 30)),
-//   };
-//   console.log(randomMovers);
-//   return randomMovers;
-// }
 

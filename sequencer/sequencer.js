@@ -9,19 +9,7 @@ defaultAttractor = {
 };
 
 
-// function createRandomMovers() {
-//   const randomMovers = {
-//     mass: 0,
-//     size: 0,
-//     qty: 0,
-//   }
 
-//   randomMovers.mass = Math.floor(random(10, 40));
-//   randomMovers.size = Math.floor(random(100, 200));
-//   randomMovers.qty = Math.floor(random(1, 15));
-//   return randomMovers;
-
-// }
 
 
 
@@ -58,7 +46,7 @@ function sequencer() {
       i++;
       score[i].function(score[i].time);
 
-      if (i < score.length - 1) {
+      if (i <= score.length - 1) {
         nextSequence(i);
       } else {
         console.log("Done");
