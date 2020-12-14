@@ -36,13 +36,13 @@ function sequencer() {
       score[i].function(score[i].time);
 
       if (i < score.length - 1) {
-        clearInterval(sequenceTimer);
         nextSequence(i);
       } else {
         console.log("Done");
       }
     }, score[i].time);
   }
+
 
   if (first) {
     console.log("first next")

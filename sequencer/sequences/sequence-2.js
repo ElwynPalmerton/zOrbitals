@@ -8,10 +8,6 @@ function next() {
 function sequenceTwo() {
   sequence = "two";
 
-  function changeBG() {
-
-
-  }
 
 
 }

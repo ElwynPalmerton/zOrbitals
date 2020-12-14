@@ -14,7 +14,6 @@ class createConstellation {
 
     this.massMin = 0.8 //1 + Math.floor(massRange / 2);
     this.massMax = 1.2  // 1 - Math.floor(massRange / 2);
-
   }
 
   modifyColorWithinRange(color) {
