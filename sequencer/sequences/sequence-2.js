@@ -4,3 +4,14 @@ function next() {
 } function next() {
   console.log("Nexting");
 }
+
+function sequenceTwo() {
+  sequence = "two";
+
+  function changeBG() {
+
+
+  }
+
+
+}

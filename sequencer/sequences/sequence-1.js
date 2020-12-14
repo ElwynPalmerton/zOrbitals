@@ -1,48 +1,27 @@
 
-function reqeatActionsAndStop(actions, repeatInterval, duration) {
-  let currentTime = Date.now() - start;
-  // console.log("Timer: ", i, currentTime);
-  let intervalTwo;
-  let i = 0;
-
-  function runSequence() {
-    actions();
-
-    sequenceRepeater = setTimeout(() => {
-      runSequence();
-    }, repeatInterval);
-  }
-
-  runSequence();
-
-  setTimeout(() => {
-    console.log("Clearing");
-    clearTimeout(sequenceRepeater);
-  }, duration);
-}
 
 function sequenceOne(duration) {
+  sequence = "one";
 
-  let yellowConstellationBuilder = new createConstellation(0.4, 15, 0.2); //args: massRange, colorRange
+  const CONSTELLATIONS = 10;
+
+  let yellowConstellationBuilder = new createConstellation(0.4, 15, 0.2);
   let blueConstellationBuilder = new createConstellation(0.6, 30, 0.2);
+  //args: massRange, ratio of blinker to faders.
 
-  function sequenceOneActions(duraction) {
+  function sequenceOneActions(duration) {
+    //duration doesn't actually do anything because this runs until
+    //... sequenceTwo gets called.
+    //Creates a set of yellow or blue constellations every three seconds.
 
-    //Factor this out into randomType = coin("yellow", "blue");
-    let coin = random() < 0.2;
-    let newColor;
-    if (coin) {
-      randomType = "yellow";
-    } else {
-      randomType = "blue";
-    };
+    let randomType = flip("yellow", "blue");
 
     newColor = createRandomColor(randomType);
 
     let newSequenceMovers = createRandomMovers();
     //let newRandomMover = createRandomMovers(scale);
 
-    if (i < 10) {
+    if (i < CONSTELLATIONS) {
       console.log("Creating constellation");
       if (randomType === "blue") {
         blueConstellationBuilder.build(newSequenceMovers, sequenceAttractors[i], newColor);
@@ -51,14 +30,14 @@ function sequenceOne(duration) {
       }
     } else {
 
-      //Where is newConstellation builder defined??????
-      newConstellationBuilder.build(newSequenceMovers, defaultAttractor, newColor, randomType);
-      moverSet.splice(0, 1);
+      // //Where is newConstellation builder defined??????
+      // newConstellationBuilder.build(newSequenceMovers, defaultAttractor, newColor, randomType);
+      // moverSet.splice(0, 1);
     }
 
     i++
   }
 
   let repeatTime = 3000;
-  reqeatActionsAndStop(sequenceOneActions, repeatTime, duration);
+  reqeatActionsAndStop(sequenceOneActions, repeatTime, 10);
 };

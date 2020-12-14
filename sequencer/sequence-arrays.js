@@ -1,4 +1,13 @@
 
+let defaultAttractor = {
+  mass: 50,
+  size: 70,
+  x: 0,
+  y: 0,
+  gravity: 100,
+};
+
+
 let sequenceMovers = [
   //Dark layer
   {
@@ -112,6 +121,13 @@ let sequenceAttractors = [
     gravity: 80,
   },
   //Yellow one
+  {
+    mass: 30,
+    size: 120,
+    x: 0,
+    y: 0,
+    gravity: 50,
+  },
   {
     mass: 30,
     size: 120,

@@ -1,38 +1,26 @@
-
-
-defaultAttractor = {
-  mass: 50,
-  size: 70,
-  x: 0,
-  y: 0,
-  gravity: 100,
-};
-
-
-
-
-
-
 let score = [
   {
     function: sequenceOne,
-    time: 300000,
-  }];
+    time: 3000,
+  },
 
-//   {
-//     function: next,
-//     time: 5000,
-//   },
-//   {
-//     function: afterNext,
-//     time: 5000,
-//   }
-// ];
+  {
+    function: sequenceTwo,
+    time: 3000,
+  },
+
+  {
+    function: afterNext,
+    time: 5000,
+  }
+];
 
 let start = Date.now();
 
+let first = true;
 
 function sequencer() {
+  i = 0;
 
   //console.log(start);
   score[i].function(score[i].time);
@@ -44,9 +32,11 @@ function sequencer() {
       console.log("Timer in sequencer: ", currentTime);
 
       i++;
+
       score[i].function(score[i].time);
 
-      if (i <= score.length - 1) {
+      if (i < score.length - 1) {
+        clearInterval(sequenceTimer);
         nextSequence(i);
       } else {
         console.log("Done");
@@ -54,5 +44,9 @@ function sequencer() {
     }, score[i].time);
   }
 
-  nextSequence(0);
+  if (first) {
+    console.log("first next")
+    first = false;
+    nextSequence(0);
+  }
 }

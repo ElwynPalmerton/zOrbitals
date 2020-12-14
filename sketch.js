@@ -16,7 +16,7 @@ let gravityForce; //This is used in draw to pass the force to movers.
 let scl = 0.1;
 let removeMoverSet = false;
 
-
+let sequence = '';
 
 const c = {
   //These should go in the attractor object.
@@ -85,7 +85,7 @@ let bgc = {
 };
 
 
-
+// let bg;
 
 incrementingScl = true;
 
