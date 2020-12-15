@@ -1,23 +1,26 @@
 function sequenceFour(duration) {
-  console.log("sequence Four");
-  sequence = "addAlpha";
+  console.log("sequence four");
 
 
-
-
-  function cleanUp() {
-    setTimeout(() => {
-
-      bgc.h = 0;
-      bgc.s = 0;
-      bgc.l = 30;
-      bgc.a = 0;
-
-
-    }, duration);
+  const bgSpecs = {
+    lightnessChangeRate: 0.011,
+    saturationChangeRate: 0.09,
+    hueChangeRate: 0.5,
+    lightnessMax: 50,
+    lightnessMin: 0,
+    saturationMax: 50,
+    saturationMin: 0
   }
 
+  //Set the background color every 20 milliseconds
+  let backgroundInterval = setInterval(() => {
+    run ? backgroundSequencer(bgSpecs) : null;
+  }, 20);
+  // }
 
-  // cleanUp(duration);
+  setTimeout(() => {
+    clearInterval(backgroundInterval);
+  }, duration)
+
 
 }

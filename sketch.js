@@ -1,6 +1,8 @@
 //The Nature of Code, Chapter 2.
 //Make more layers, scale the dots 
 
+
+
 let attractor, mover;
 let scale = 2;
 let i = 0;
@@ -43,12 +45,24 @@ let bgc = {
   a: 1,
 };
 
+let bg = {
+  h: 250,
+  s: 30,
+  l: 11,
+  a: 1,
+};
+
+let lightnessIncreasing = true;
+let saturationIncreasing = true;
+
 incrementingScl = true;
 
 function mousePressed() {
   run = !run;
   run ? loop() : noLoop();
 }
+
+
 
 function setup() {
   angleMode(RADIANS);
@@ -60,21 +74,18 @@ function setup() {
   addDarkStars(30);
   addShootingStars(40);
 
-  sequencer();
+  sequencer(masterScore);
 }
 
-let lightnessIncreasing = true;
-let saturationIncreasing = true;
 
 
 function draw() {
 
 
-  let bg = backgroundSequencer(sequence);
   // console.log(bg);
 
   translate(width / 2, height / 2);
-  background(bg.h, bg.s, bg.l, bg.a);
+  background(bgc.h, bgc.s, bgc.l, bgc.a);
   // background(0, 0, 100, 1);
 
   for (let i = 0; i < moverSet.length; i++) {
@@ -101,5 +112,5 @@ function draw() {
     star.update();
     star.display();
   })
-
 }
+//End of draw()

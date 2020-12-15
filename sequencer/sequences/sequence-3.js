@@ -1,23 +1,25 @@
 function sequenceThree(duration) {
-  console.log("sequence three");
-  sequence = "black";
 
-  bgc.h = 0;
-  bgc.l = 10;
-  bgc.s = 0;
-  bgc.a = 0;
+  console.log('sequenceThree')
 
-  //I don't know why I need this here or why it works.
-  //But sequence three exists just to reset so that sequence four works.
-  //bgc.a was resetting to 1 instead of 0, for completely mysterious reasons.
+  let backgroundInterval = setInterval(() => {
+    run ? addAlpha() : null;
+  }, 20);
 
+  // stars.forEach(star => {
+  //   star.color = {
+  //     h: 44,
+  //     s: 80,
+  //     l: 0,
+  //     a: 1,
+  //   }
+  // })
 
+  setInterval(() => {
+    clearInterval(backgroundInterval);
+  }, duration);
 
-
-
-
-
-
+  //log the background color every five seconds.
 
 
 }
