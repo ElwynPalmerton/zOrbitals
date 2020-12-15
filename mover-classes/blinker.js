@@ -1,5 +1,5 @@
 class Blinker {
-  constructor() {
+  constructor(blinkerColor = { h: 10, s: 30, l: 100, a: 1 }) {
     this.angle = 0;
     this.size = random(2.5, 5);
     this.glimmer = true;
@@ -7,10 +7,10 @@ class Blinker {
     this.x = random(-windowWidth / 2, windowWidth / 2);
     this.y = random(-windowHeight / 2, windowHeight / 2);
     this.color = {
-      h: 10,
-      s: 30,
-      l: 100,
-      a: 1
+      h: blinkerColor.h,
+      s: blinkerColor.s,
+      l: blinkerColor.l,
+      a: blinkerColor.a
     }
 
     let randomColor = Math.floor(random(0, 50));

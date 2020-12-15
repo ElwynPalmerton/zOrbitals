@@ -30,52 +30,11 @@ const c = {
   topSpeed: 15,
 };
 
-function mousePressed() {
-  run = !run;
-  if (run === true) {
-    loop();
-  }
-}
-
-
-
 let stars = [];
 let shootingStars = [];
+let darkStars = [];
 let speed = 10;
 
-function setup() {
-  angleMode(RADIANS);
-
-  for (let i = 0; i < 200; i++) {
-    let star = new Blinker();
-    stars.push(star);
-  }
-
-  for (let i = 0; i < 30; i++) {
-    let newStar = new DarkStar();
-    shootingStars.push(newStar);
-  }
-
-  for (let i = 0; i < 40; i++) {
-    let newStar = new ShootingStar();
-    shootingStars.push(newStar);
-  }
-
-  colorMode(HSB)
-
-  createCanvas(windowWidth, windowHeight);
-  //background(258, 33, 21, 1);
-
-  // for (let i = 0; i < 0; i++) {
-  //   createConstellation(s[i], a[i], moverCols[i], i, "normal");
-  // }
-
-  // sequencing();
-  sequencer();
-  //backgroundSequencer();
-}
-let lightnessIncreasing = true;
-let saturationIncreasing = true;
 
 let bgc = {
   h: 250,
@@ -84,53 +43,63 @@ let bgc = {
   a: 1,
 };
 
-
-// let bg;
-
 incrementingScl = true;
 
+function mousePressed() {
+  run = !run;
+  run ? loop() : noLoop();
+}
+
+function setup() {
+  angleMode(RADIANS);
+  colorMode(HSB);
+  createCanvas(windowWidth, windowHeight);
+
+  //The add functions are in utils/addObjects.
+  addBlinkers(200);
+  addDarkStars(30);
+  addShootingStars(40);
+
+  sequencer();
+}
+
+let lightnessIncreasing = true;
+let saturationIncreasing = true;
+
+
 function draw() {
-  // if (incrementingScl === true) {
-  //   scl += 0.001;
-  // } else {
-  //   scl -= 0.001;
-  // }
-  // console.log(scl);
-
-  // if (scl > 0.8) {
-  //   incrementingScl = false;
-  // }
-  // if (scl < 0.01) {
-  //   incrementingScl = true;
-  // }
 
 
+  let bg = backgroundSequencer(sequence);
+  // console.log(bg);
 
-  let bg = backgroundSequencer();
   translate(width / 2, height / 2);
-  if (run === true) {
-    background(bg.h, bg.s, bg.l, bg.a);
+  background(bg.h, bg.s, bg.l, bg.a);
+  // background(0, 0, 100, 1);
 
-    for (let i = 0; i < moverSet.length; i++) {
-      moverSet[i].forEach(mover => {
-        gravityForce = attractors[i].attracts(mover);
-        mover.applyForce(gravityForce);
-        mover.update();
-        mover.display();
-      })
-      //attractors[i].display();
-    }
-    stars.forEach(star => {
-      star.update();
-      star.display();
-    });
-
-    shootingStars.forEach(star => {
-      star.update();
-      star.display();
+  for (let i = 0; i < moverSet.length; i++) {
+    moverSet[i].forEach(mover => {
+      gravityForce = attractors[i].attracts(mover);
+      mover.applyForce(gravityForce);
+      mover.update();
+      mover.display();
     })
-
-  } else {
-    noLoop();
+    //attractors[i].display(); 
   }
+
+  stars.forEach(star => {
+    star.update();
+    star.display();
+  });
+
+  shootingStars.forEach(star => {
+    star.update();
+    star.display();
+  })
+
+  darkStars.forEach(star => {
+    star.update();
+    star.display();
+  })
+
 }
