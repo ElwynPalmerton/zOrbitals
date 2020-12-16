@@ -39,8 +39,12 @@ function sequenceOne(duration) {
 
 
   //Create constellations every 3 seconds until this sequence ends.
+
+
+
   let repeatTime = 3000;
-  repeater(addConstellations, repeatTime, duration);
+
+  repeater(addConstellation, repeatTime, duration);
 
 };
 

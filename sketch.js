@@ -3,15 +3,18 @@
 
 
 
-let attractor, mover;
+// let attractor, mover;
+// let attractors = [];
+
+
+
 let scale = 2;
 let i = 0;
 
-let tempMovers = [];
+// let tempMovers = [];
 let moverSet = []
 
 let run = true;
-let attractors = [];
 
 // let force; ---Not being used.
 let gravityForce; //This is used in draw to pass the force to movers.
@@ -90,13 +93,8 @@ function draw() {
   // background(0, 0, 100, 1);
 
   for (let i = 0; i < moverSet.length; i++) {
-    moverSet[i].forEach(mover => {
-      gravityForce = attractors[i].attracts(mover);
-      mover.applyForce(gravityForce);
-      mover.update();
-      mover.display();
-    })
-    //attractors[i].display(); 
+    moverSet[i].update();
+    moverSet[i].display();
   }
 
   stars.forEach(star => {
