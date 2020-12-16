@@ -2,22 +2,19 @@
 //Make more layers, scale the dots 
 
 
-
-// let attractor, mover;
-// let attractors = [];
-
+let i = 0;
+let moverSet = []
 
 
 let scale = 2;
-let i = 0;
 
 // let tempMovers = [];
-let moverSet = []
 
 let run = true;
 
 // let force; ---Not being used.
-let gravityForce; //This is used in draw to pass the force to movers.
+// let gravityForce; //This is used in draw to pass the force to movers.
+
 let scl = 0.1;
 let removeMoverSet = false;
 
@@ -48,12 +45,6 @@ let bgc = {
   a: 1,
 };
 
-let bg = {
-  h: 250,
-  s: 30,
-  l: 11,
-  a: 1,
-};
 
 let lightnessIncreasing = true;
 let saturationIncreasing = true;

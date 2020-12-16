@@ -10,22 +10,19 @@ class Constellation {
 
     let randomType = flip("yellow", "blue");
 
-    let newColor = createRandomColor(randomType);
-
-    let newSequenceMovers = createRandomMovers();
-    //let newRandomMover = createRandomMovers(scale);
-
     if (i > sequenceAttractors.length - 1) {
       i = 0;
       console.log('Resetting attractors array');
     }
 
-    if (randomType === "blue") {
-      this.constellation = blueConstellationBuilder.build(newSequenceMovers, newColor);
+    let newColor = createRandomColor();
 
+    if (randomType === "blue") {
+      // this.constellation = blueConstellationBuilder.build(newSequenceMovers, newColor);
+      this.constellation = blueConstellationBuilder.build();
       this.attractor = blueConstellationBuilder.addAttractor(sequenceAttractors[i], newColor);
     } else {
-      this.constellation = yellowConstellationBuilder.build(newSequenceMovers, newColor);
+      this.constellation = yellowConstellationBuilder.build();
       this.attractor = blueConstellationBuilder.addAttractor(sequenceAttractors[i], newColor);
     }
   }
@@ -33,7 +30,7 @@ class Constellation {
 
   update() {
     this.constellation.forEach(mover => {
-      gravityForce = this.attractor.attracts(mover);
+      const gravityForce = this.attractor.attracts(mover);
       mover.applyForce(gravityForce);
       mover.update();
 
@@ -61,7 +58,6 @@ class createConstellation {
     this.colorMin = -colorRange//-Math.floor(colorRange / 2);
     this.colorMax = colorRange//Math.floor(colorRange / 2);
 
-
     this.massMin = 0.8 //1 + Math.floor(massRange / 2);
     this.massMax = 1.2  // 1 - Math.floor(massRange / 2);
 
@@ -80,27 +76,37 @@ class createConstellation {
   }
 
 
-  build(s, moverCol) {
-    let attractors = []
+  createMovers() {
+
+
+
+  }
+
+  build() {
     let tempMovers = [];
 
 
+    let randomType = flip("yellow", "blue");
+    let moverCol = createRandomColor(randomType);
+
+
+    const moverQty = Math.floor(random(1, 15));
+
     //Create all the movers for that attractor.
-    for (let j = 0; j < s.qty; j++) {
+    for (let j = 0; j < moverQty; j++) {
       //mass, size, inital speed, and color.
 
+      let newMover = createRandomMover();
       let variation = random(this.massMin, this.massMax);    //0.8 and 1.2
-      s.mass = s.mass * variation;
-      s.size = s.size * variation;
-
-      //The input for the yellow mover should be changed by +8
+      newMover.mass *= variation;
+      newMover.size *= variation;
 
       let newMoverColor = this.modifyColorWithinRange(moverCol);
 
       let coin = random(1) < this.blinkToFadeMoverRatio;
       let mover;
 
-      let newObject = Object.assign({}, s);
+      let newObject = Object.assign({}, newMover);
       if (coin) {
         mover = new BlinkMover(newObject.mass, newObject.size, c.initialSpeed, newMoverColor);
       } else {
@@ -114,25 +120,23 @@ class createConstellation {
 }
 
 
-//Creates a mover with a random mass, size, and qty within the given ranges below.
 
-
-function createRandomMovers() {
-  const randomMovers = {
+function createRandomMover() {
+  //Creates a mover with a random mass, size, and qty within the given ranges below.
+  const randomMover = {
     mass: 0,
     size: 0,
-    qty: 0,
   }
 
-  randomMovers.mass = Math.floor(random(10, 40));
-  randomMovers.size = Math.floor(random(100, 200));
-  randomMovers.qty = Math.floor(random(1, 15));
-  return randomMovers;
+  randomMover.mass = Math.floor(random(10, 40));
+  randomMover.size = Math.floor(random(100, 200));
+
+  return randomMover;
 }
 
 
-
 function createRandomColor(type) {
+  //Creates a random color for "yellow" or "blue" color schemes.
   const randomColor = {
     h: 0,
     s: 0,

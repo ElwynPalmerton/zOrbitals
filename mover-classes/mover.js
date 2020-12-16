@@ -1,6 +1,6 @@
 class Mover {
 
-  constructor(mass = 200, size = 100, startSpeed = 20, col) {
+  constructor(mass = 200, size = 100, startSpeed = 20, col = { h: 0, s: 0, l: 0, a: 0 }) {
     //Create vector
     // const startSpeed = 10;
     const defaultAcceleration = 0;
