@@ -74,6 +74,7 @@ function setup() {
   addDarkStars(30);
   addShootingStars(40);
 
+  //Sequencer sequences all of the timed actions in this video.
   sequencer(masterScore);
 }
 

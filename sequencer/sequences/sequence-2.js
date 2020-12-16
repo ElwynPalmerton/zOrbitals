@@ -72,7 +72,22 @@ function sequenceTwo(duration) {
     bgc.a = 0;
   }, 30000);
 
-  repeater(addConstellations, 3000, 5, duration);
+  //Does it turn white again at any point?
+  //1a. Gradually turns white.
+  //2.  Then background turns fully transparent black.
+  //3.  Dark stars start overpainting the background.
+  //        -These should be phased in one at a time.
+  //4.  White stars phased in.
+  //        -Phase these in one at a time.
+  //
+  // II. 
+  // 1. Same as above but faster phasing. 
+  //       -alternating back and forth rapidly.
+  //
+  //Run the sequence with the timer on (log each second)
+  //..and figure out exactly what is happening before finishing this.
+
+  repeater(addConstellations, 3000, duration);
   // repeater(blackThenWhite, 9000, 10, duration);
   setTimeout(() => {
     // bgc.a = 0;
