@@ -1,6 +1,4 @@
 class starfield {
-
-
   constructor(qty) {
 
     this.stars = [];
@@ -22,8 +20,6 @@ class starfield {
       star.display();
     });
   }
-
-
 }
 
 

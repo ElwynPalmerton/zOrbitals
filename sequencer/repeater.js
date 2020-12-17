@@ -1,9 +1,7 @@
 
 function repeater(actions, repeatInterval, duration) {
 
-
   actions();
-
 
   let sequenceRepeater = setInterval(() => {
     actions();

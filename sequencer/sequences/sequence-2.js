@@ -42,12 +42,8 @@ function sequenceTwo(duration) {
 
   setTimeout(() => {
     console.log('whitestars');
-    darkStars.forEach(star => {
-      star.color.h = 0;
-      star.color.s = 0;
-      star.color.l = 100;
-      star.color.a = 1;
-    })
+    darkStarSystem.changeColor(
+      { h: 0, s: 0, l: 100, a: 1 });
 
 
     bgc.h = 0;
@@ -58,12 +54,8 @@ function sequenceTwo(duration) {
 
   setTimeout(() => {
     console.log('re-darkstars');
-    darkStars.forEach(star => {
-      star.color.h = 0;
-      star.color.s = 0;
-      star.color.l = 0;
-      star.color.a = 0.25;
-    })
+    darkStarSystem.changeColor(
+      { h: 0, s: 0, l: 0, a: 0.25 })
 
 
     bgc.h = 0;

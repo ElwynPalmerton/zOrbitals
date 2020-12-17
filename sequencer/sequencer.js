@@ -9,7 +9,7 @@ let masterScore = [
   },
   {
     function: sequenceTwo,
-    time: 600000,
+    time: 60000,
   },
   {
     function: sequenceThree,

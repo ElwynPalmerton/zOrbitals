@@ -1,5 +1,3 @@
-//The Nature of Code, Chapter 2.
-//Make more layers, scale the dots 
 
 //???
 let scl = 0.1;
@@ -9,7 +7,7 @@ let run = true;
 
 
 const c = {
-  //These should go in the attractor object.
+  //These should go in the attractor object???
   gravity: 50,
   sclDistance: 3,        ///??????
   //These do not need to go in the attractor object.
@@ -22,11 +20,6 @@ const c = {
 
 // let darkStars = [];
 let speed = 10;
-
-
-let shootingStarsSystem;
-let starSystem;
-let system;
 
 
 let bgc = {
@@ -53,18 +46,10 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
 
   system = new constellationSystem();
-
-  //The add functions are in utils/addObjects.
-  // addBlinkers(200);
   starSystem = new starfield(200);
   shootingStarSystem = new ShootingStarField(200);
   darkStarSystem = new DarkStarField(30);
 
-
-  // addDarkStars(30);
-  // addShootingStars(40);
-
-  //Sequencer sequences all of the timed actions in this video.
   sequencer(masterScore);
 }
 

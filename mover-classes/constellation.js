@@ -3,7 +3,6 @@ class Constellation {
   constructor(i) {
 
     this.index = i;
-
     this.attractors;
     this.constellation = [];
 
