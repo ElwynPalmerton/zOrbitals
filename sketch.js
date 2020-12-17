@@ -1,4 +1,4 @@
-
+console.log('new version 12.16')
 //???
 let scl = 0.1;
 let scale = 2;
@@ -30,6 +30,7 @@ let bgc = {
 };
 
 let lightnessIncreasing = true;
+
 let saturationIncreasing = true;
 
 incrementingScl = true;
