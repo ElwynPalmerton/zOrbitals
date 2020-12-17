@@ -51,6 +51,7 @@ function setup() {
   darkStarSystem = new DarkStarField(30);
 
   sequencer(masterScore);
+  console.log('new version 12.16')
 }
 
 
