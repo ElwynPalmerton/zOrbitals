@@ -1,7 +1,52 @@
-// Daniel Shiffman
-// http://codingtra.in
-// http://patreon.com/codingtrain
-// Code for: https://youtu.be/17WoOqgXsRM
+class ShootingStarField {
+  constructor(qty) {
+
+    this.stars = [];
+
+    for (let i = 0; i < qty; i++) {
+      let star = new ShootingStar();
+      this.stars.push(star);
+    }
+  }
+
+  update() {
+    this.stars.forEach(star => {
+      star.update();
+    });
+  }
+
+  display() {
+    this.stars.forEach(star => {
+      star.display();
+    });
+  }
+}
+
+class DarkStarField {
+  constructor(qty) {
+
+    this.stars = [];
+
+    for (let i = 0; i < qty; i++) {
+      let star = new DarkStar();
+      this.stars.push(star);
+    }
+  }
+
+  update() {
+    this.stars.forEach(star => {
+      star.update();
+    });
+  }
+
+  display() {
+    this.stars.forEach(star => {
+      star.display();
+    });
+  }
+}
+
+
 
 class ShootingStar {
   constructor() {
@@ -14,6 +59,7 @@ class ShootingStar {
     this.pz = this.z;
     this.variance = 0;
     this.angle = 0;
+    this.size = 0;
   }//
 
   update(rotation) {
@@ -43,8 +89,8 @@ class ShootingStar {
       map(this.y / this.z, 0, 1, 0, windowHeight) +
       random(-this.variance, this.variance);
 
-    var r = map(this.z, windowWidth, 0, 1, 12);
-    ellipse(sx, sy, r, r);
+    this.size = map(this.z, windowWidth, 0, 1, 12);
+    ellipse(sx, sy, this.size, this.size);
 
     //this.pz = this.z;
 
@@ -69,10 +115,11 @@ class DarkStar extends ShootingStar {
 
   display() {
     push();
+
     // rotate(this.angle);
+
     let c = this.color;
     fill(c.h, c.s, c.l, c.a);
-    // noStroke();
 
     var sx =
       map(this.x / this.z, 0, 1, 0, windowWidth) +
@@ -89,7 +136,7 @@ class DarkStar extends ShootingStar {
 
     noStroke();
     strokeWeight(1);
-    line(this.px, this.py, sx, sy);
+    // line(this.px, this.py, sx, sy);
     pop();
   }
 }

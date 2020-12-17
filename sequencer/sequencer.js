@@ -39,6 +39,7 @@ let start = Date.now();
 let first = true;
 
 function sequencer(score) {
+  let i = 0;
   sequenceIndex = 0;
 
   //console.log(start);

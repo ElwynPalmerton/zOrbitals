@@ -1,33 +1,23 @@
 class Constellation {
 
-  constructor() {
+  constructor(i) {
+
+    this.index = i;
 
     this.attractors;
     this.constellation = [];
 
-
-
-    if (i > sequenceAttractors.length - 1) {
-      i = 0;
-      console.log('Resetting attractors array');
-    }
+    // if (i > sequenceAttractors.length - 1) {
+    //   i = 0;
+    //   console.log('Resetting attractors array');
+    // }
 
     const constellationBuilder = this.createConstellationBuilder();
     this.constellation = constellationBuilder.build();
 
-
-    this.attractor = constellationBuilder.addAttractor(sequenceAttractors[i], this.constellation[0].col);
-
-
-    // let randomType = flip("yellow", "blue");
-    // let newColor = createRandomColor();
-
-    // if (randomType === "blue") {
-    //   this.attractor = constellationBuilder.addAttractor(sequenceAttractors[i], newColor);
-    // } else {
-    //   this.attractor = constellationBuilder.addAttractor(sequenceAttractors[i], newColor);
-    // }
+    this.attractor = constellationBuilder.addAttractor(sequenceAttractors[this.index], this.constellation[0].col);
   }
+
 
   createConstellationBuilder() {
     let randomType = flip("yellow", "blue");
@@ -40,7 +30,6 @@ class Constellation {
     } else {
       return blueConstellationBuilder;
     }
-
   }
 
 
@@ -60,9 +49,6 @@ class Constellation {
   }
 }
 
-
-
-//Called from sequenceOne.
 
 class constellationBuilder {
   //Create attractor.
@@ -140,8 +126,6 @@ class constellationBuilder {
     return tempMovers;
   }
 }
-
-
 
 function createRandomMover() {
   //Creates a mover with a random mass, size, and qty within the given ranges below.

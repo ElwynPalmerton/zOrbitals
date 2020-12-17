@@ -87,7 +87,7 @@ function sequenceTwo(duration) {
   //Run the sequence with the timer on (log each second)
   //..and figure out exactly what is happening before finishing this.
 
-  repeater(addConstellation, 3000, duration);
+  repeater(system.addConstellation.bind(system), 3000, duration);
   // repeater(blackThenWhite, 9000, 10, duration);
   setTimeout(() => {
     // bgc.a = 0;

@@ -1,3 +1,33 @@
+class starfield {
+
+
+  constructor(qty) {
+
+    this.stars = [];
+
+    for (let i = 0; i < qty; i++) {
+      let star = new Blinker();
+      this.stars.push(star);
+    }
+  }
+
+  update() {
+    this.stars.forEach(star => {
+      star.update();
+    });
+  }
+
+  display() {
+    this.stars.forEach(star => {
+      star.display();
+    });
+  }
+
+
+}
+
+
+
 class Blinker {
   constructor(blinkerColor = { h: 10, s: 30, l: 100, a: 1 }) {
     this.angle = 0;

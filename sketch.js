@@ -1,24 +1,12 @@
 //The Nature of Code, Chapter 2.
 //Make more layers, scale the dots 
 
-
-let i = 0;
-let moverSet = []
-
-
+//???
+let scl = 0.1;
 let scale = 2;
-
-// let tempMovers = [];
 
 let run = true;
 
-// let force; ---Not being used.
-// let gravityForce; //This is used in draw to pass the force to movers.
-
-let scl = 0.1;
-let removeMoverSet = false;
-
-let sequence = '';
 
 const c = {
   //These should go in the attractor object.
@@ -32,10 +20,13 @@ const c = {
   topSpeed: 15,
 };
 
-let stars = [];
-let shootingStars = [];
-let darkStars = [];
+// let darkStars = [];
 let speed = 10;
+
+
+let shootingStarsSystem;
+let starSystem;
+let system;
 
 
 let bgc = {
@@ -44,7 +35,6 @@ let bgc = {
   l: 11,
   a: 1,
 };
-
 
 let lightnessIncreasing = true;
 let saturationIncreasing = true;
@@ -57,50 +47,45 @@ function mousePressed() {
 }
 
 
-
 function setup() {
   angleMode(RADIANS);
   colorMode(HSB);
   createCanvas(windowWidth, windowHeight);
 
+  system = new constellationSystem();
+
   //The add functions are in utils/addObjects.
-  addBlinkers(200);
-  addDarkStars(30);
-  addShootingStars(40);
+  // addBlinkers(200);
+  starSystem = new starfield(200);
+  shootingStarSystem = new ShootingStarField(200);
+  darkStarSystem = new DarkStarField(30);
+
+
+  // addDarkStars(30);
+  // addShootingStars(40);
 
   //Sequencer sequences all of the timed actions in this video.
   sequencer(masterScore);
 }
 
 
-
 function draw() {
-
-
-  // console.log(bg);
 
   translate(width / 2, height / 2);
   background(bgc.h, bgc.s, bgc.l, bgc.a);
   // background(0, 0, 100, 1);
 
-  for (let i = 0; i < moverSet.length; i++) {
-    moverSet[i].update();
-    moverSet[i].display();
-  }
+  starSystem.update();
+  starSystem.display();
 
-  stars.forEach(star => {
-    star.update();
-    star.display();
-  });
+  system.update();
+  system.display();
 
-  shootingStars.forEach(star => {
-    star.update();
-    star.display();
-  })
+  shootingStarSystem.update();
+  shootingStarSystem.display();
 
-  darkStars.forEach(star => {
-    star.update();
-    star.display();
-  })
+  darkStarSystem.update();
+  darkStarSystem.display();
+
 }
 //End of draw()

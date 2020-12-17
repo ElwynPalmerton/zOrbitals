@@ -3,7 +3,6 @@ function sequenceOne(duration) {
 
 
   //Background value is set.
-
   bgc = {
     h: 0,
     s: 0,
@@ -38,13 +37,9 @@ function sequenceOne(duration) {
   // }, 5000);
 
 
-  //Create constellations every 3 seconds until this sequence ends.
-
-
-
   let repeatTime = 3000;
 
-  repeater(addConstellation, repeatTime, duration);
+  repeater(system.addConstellation.bind(system), repeatTime, duration);
 
 };
 
@@ -57,20 +52,10 @@ function sequenceOneA(duration) {
     run ? backgroundWhitener() : null;
   }, 20);
 
-  // stars.forEach(star => {
-  //   star.color = {
-  //     h: 44,
-  //     s: 80,
-  //     l: 0,
-  //     a: 1,
-  //   }
-  // })
-
   setInterval(() => {
     clearInterval(backgroundInterval);
   }, duration);
 
   //log the background color every five seconds.
-
 
 }
