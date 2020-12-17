@@ -21,7 +21,6 @@ const c = {
 // let darkStars = [];
 let speed = 10;
 
-
 let bgc = {
   h: 250,
   s: 30,

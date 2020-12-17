@@ -1,7 +1,6 @@
 
 function sequenceOne(duration) {
 
-
   //Background value is set.
   bgc = {
     h: 0,
@@ -36,13 +35,11 @@ function sequenceOne(duration) {
   //   console.log(bgc);
   // }, 5000);
 
-
   let repeatTime = 3000;
 
   repeater(system.addConstellation.bind(system), repeatTime, duration);
-
-
 };
+
 
 
 function sequenceOneA(duration) {
@@ -58,5 +55,4 @@ function sequenceOneA(duration) {
   }, duration);
 
   //log the background color every five seconds.
-
 }

@@ -14,15 +14,15 @@ class constellationSystem {
   }
 
   update() {
-    for (let i = 0; i < this.constellationSets.length; i++) {
-      this.constellationSets[i].update();
-    }
+    this.constellationSets.forEach(constellation => {
+      constellation.update();
+    })
 
   }
 
   display() {
-    for (let i = 0; i < this.constellationSets.length; i++) {
-      this.constellationSets[i].display();
-    }
+    this.constellationSets.forEach(constellation => {
+      constellation.display();
+    })
   }
 }
