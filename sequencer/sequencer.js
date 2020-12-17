@@ -1,5 +1,9 @@
 let masterScore = [
   {
+    function: testSequence,
+    time: 60000,
+  },
+  {
     function: sequenceOne,
     time: 30000,
   },

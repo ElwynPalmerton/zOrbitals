@@ -20,6 +20,10 @@ class Mover {
     this.acceleration = createVector(random(-defaultAcceleration, defaultAcceleration), random(-defaultAcceleration, defaultAcceleration));
   }
 
+  setColor(color) {
+    this.col = Object.assign({}, color);
+  }
+
   attracts(mover) {
     //force = Gravity * mass1 * mass2 / dist squared * r.normalized.
     const g = c.gravity;
@@ -103,8 +107,7 @@ class FadeMover extends Mover {
     this.minSaturation = 40;
     this.maxSaturation = 100;
     this.increasing = true;
-    // this.fadeInterval = random(100, 300);
-
+    this.fadeInterval = random(100, 300);
   }
 
   update() {
@@ -128,9 +131,10 @@ class FadeMover extends Mover {
 
 class BlinkMover extends FadeMover {
   constructor(mass = 200, size = 100, startSpeed = 20, col = { h: 0, s: 0, l: 1, a: 1 }) {
-    super(mass = 200, size, startSpeed = 20, col = { h: 0, s: 0, l: 1, a: 1 });
-    this.i = 0;
-    this.col = col;
+    super(mass = 200, size, startSpeed = 20, col);
+    this.blinkIndex = 0;
+    this.blinkColor = Object.assign({}, col);
+    this.col = Object.assign({}, col);
     this.blinkInterval = random(100, 300);
     this.disappearedColor = {
       h: 0,
@@ -141,11 +145,16 @@ class BlinkMover extends FadeMover {
     //super();
   }
 
+  setColor(color) {
+    this.col = Object.assign({}, color);
+    this.blinkColor = Object.assign({}, color);
+  }
+
   update() {
-    this.i++;
+    this.blinkIndex++;
     super.update();
-    if (this.i % this.blinkInterval < this.blinkInterval / 2) {
-      this.col = this.col;
+    if (this.blinkIndex % this.blinkInterval < this.blinkInterval / 2) {
+      this.col = this.blinkColor;
     } else {
       this.col = this.disappearedColor;
     }

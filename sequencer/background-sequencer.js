@@ -54,6 +54,12 @@ function backgroundWhitener() {
 
 function addAlpha() {
 
+  //increment = current - target / frames // frames = frameRate * seconds or frameRate * ms / 1000.
+
+  //if bgc[hslaVar] < target {
+  //   bgc[hslaVar] += increment
+  //}
+
   if (bgc.h < 217) {
     bgc.h += 0.1;
   }

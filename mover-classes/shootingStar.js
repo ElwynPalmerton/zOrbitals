@@ -14,9 +14,6 @@ class ShootingStarField {
       star.update();
     });
   }
-
-
-
   display() {
     this.stars.forEach(star => {
       star.display();
@@ -67,11 +64,11 @@ class ShootingStar {
 
     this.pz = this.z;
     this.variance = 0;
-    this.angle = 0;
-    this.size = 0;
-
     this.sx;
     this.sy;
+
+    this.size = 0;
+    this.angle = 0;
 
     color = {
       h: 201,
@@ -125,6 +122,7 @@ class ShootingStar {
   }
 }
 
+
 class DarkStar extends ShootingStar {
   constructor() {
     super();
@@ -136,7 +134,6 @@ class DarkStar extends ShootingStar {
       a: 0.25,
     }
   }
-
 
   update(rotation) {
     //Passing a rotation variable into rotate only rotates the Starfield stars because the DarkStars have their own Context in their display method.
