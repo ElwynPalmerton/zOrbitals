@@ -29,7 +29,7 @@ function blackThenWhite() {
 
 }
 
-function sequenceTwo(duration) {
+function rainbowHive(duration) {
 
 
   bgc.h = 0;

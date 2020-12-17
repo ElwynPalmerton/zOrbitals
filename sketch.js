@@ -21,16 +21,6 @@ const c = {
 // let darkStars = [];
 let speed = 10;
 
-let bgc = {
-  h: 250,
-  s: 30,
-  l: 11,
-  a: 1,
-};
-
-let lightnessIncreasing = true;
-let saturationIncreasing = true;
-
 incrementingScl = true;
 
 function mousePressed() {
@@ -48,16 +38,21 @@ function setup() {
   starSystem = new starfield(200);
   shootingStarSystem = new ShootingStarField(200);
   darkStarSystem = new DarkStarField(30);
+  bgColor = new backgroundColor();
 
   sequencer(masterScore);
 }
-
+setInterval(() => {
+  run ? console.log("bg in sketch: ", "h: ", bgColor.h, "s: ", bgColor.s, "l: ", bgColor.l, "a:", bgColor.a) : null;
+}, 1000)
 
 function draw() {
 
+
+
   translate(width / 2, height / 2);
-  background(bgc.h, bgc.s, bgc.l, bgc.a);
-  // background(0, 0, 100, 1);
+  background(bgColor.h, bgColor.s, bgColor.l, bgColor.a);
+
 
   starSystem.update();
   starSystem.display();

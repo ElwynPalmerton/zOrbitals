@@ -1,5 +1,7 @@
 
-function sequenceOne(duration) {
+function prelude(duration) {
+
+  console.log("Part 1 - Prelude");
 
   //Background value is set.
   bgc = {
@@ -44,7 +46,7 @@ function sequenceOne(duration) {
 
 function sequenceOneA(duration) {
 
-  console.log('sequenceOneA')
+  console.log('Part 1.a. - Segue')
 
   let backgroundInterval = setInterval(() => {
     run ? backgroundWhitener() : null;

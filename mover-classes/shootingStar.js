@@ -9,6 +9,12 @@ class ShootingStarField {
     }
   }
 
+  changeColor(color) {
+    this.stars.forEach(star => {
+      star.color = color;
+    })
+  }
+
   update() {
     this.stars.forEach(star => {
       star.update();
@@ -110,6 +116,7 @@ class ShootingStar {
     push();
     rotate(this.angle);
     //
+    noStroke();
     fill(this.color.h, this.color.s, this.color.l, this.color.a);
     // noStroke();
     ellipse(this.sx, this.sy, this.size, this.size);
