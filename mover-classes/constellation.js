@@ -5,26 +5,42 @@ class Constellation {
     this.attractors;
     this.constellation = [];
 
-    let yellowConstellationBuilder = new createConstellation(0.4, 15, 0.2);
-    let blueConstellationBuilder = new createConstellation(0.6, 30, 0.2);
 
-    let randomType = flip("yellow", "blue");
 
     if (i > sequenceAttractors.length - 1) {
       i = 0;
       console.log('Resetting attractors array');
     }
 
-    let newColor = createRandomColor();
+    const constellationBuilder = this.createConstellationBuilder();
+    this.constellation = constellationBuilder.build();
 
-    if (randomType === "blue") {
-      // this.constellation = blueConstellationBuilder.build(newSequenceMovers, newColor);
-      this.constellation = blueConstellationBuilder.build();
-      this.attractor = blueConstellationBuilder.addAttractor(sequenceAttractors[i], newColor);
+
+    this.attractor = constellationBuilder.addAttractor(sequenceAttractors[i], this.constellation[0].col);
+
+
+    // let randomType = flip("yellow", "blue");
+    // let newColor = createRandomColor();
+
+    // if (randomType === "blue") {
+    //   this.attractor = constellationBuilder.addAttractor(sequenceAttractors[i], newColor);
+    // } else {
+    //   this.attractor = constellationBuilder.addAttractor(sequenceAttractors[i], newColor);
+    // }
+  }
+
+  createConstellationBuilder() {
+    let randomType = flip("yellow", "blue");
+
+    let yellowConstellationBuilder = new constellationBuilder(0.4, 15, 0.2);
+    let blueConstellationBuilder = new constellationBuilder(0.6, 30, 0.2);
+
+    if (randomType === "yellow") {
+      return yellowConstellationBuilder;
     } else {
-      this.constellation = yellowConstellationBuilder.build();
-      this.attractor = blueConstellationBuilder.addAttractor(sequenceAttractors[i], newColor);
+      return blueConstellationBuilder;
     }
+
   }
 
 
@@ -48,7 +64,7 @@ class Constellation {
 
 //Called from sequenceOne.
 
-class createConstellation {
+class constellationBuilder {
   //Create attractor.
   constructor(massRange, colorRange, ratio) {
     //The color passed into this is created in createRandomColor
@@ -76,19 +92,33 @@ class createConstellation {
   }
 
 
-  createMovers() {
+  createMoverColors(tempMovers) {
+    let randomType = flip("yellow", "blue");
+    let moverCol = createRandomColor(randomType);
 
+    tempMovers.forEach(mover => {
+      let newMoverColor = this.modifyColorWithinRange(moverCol);
+      mover.col = newMoverColor;
+    });
+    return tempMovers;
+  }
 
+  createBlinkOrFadeMover(mass, size, initialSpeed) {
 
+    let coin = random(1) < this.blinkToFadeMoverRatio;
+
+    let mover;
+    // let newObject = Object.assign({}, newMover);
+    if (coin) {
+      mover = new BlinkMover(mass, size, initialSpeed);
+    } else {
+      mover = new FadeMover(mass, size, initialSpeed);
+    }
+    return mover;
   }
 
   build() {
     let tempMovers = [];
-
-
-    let randomType = flip("yellow", "blue");
-    let moverCol = createRandomColor(randomType);
-
 
     const moverQty = Math.floor(random(1, 15));
 
@@ -96,25 +126,17 @@ class createConstellation {
     for (let j = 0; j < moverQty; j++) {
       //mass, size, inital speed, and color.
 
-      let newMover = createRandomMover();
+      let newMover = createRandomMover();   //returns random size and mass
       let variation = random(this.massMin, this.massMax);    //0.8 and 1.2
       newMover.mass *= variation;
       newMover.size *= variation;
 
-      let newMoverColor = this.modifyColorWithinRange(moverCol);
+      const mover = this.createBlinkOrFadeMover(newMover.mass, newMover.size, c.initialSpeed);
 
-      let coin = random(1) < this.blinkToFadeMoverRatio;
-      let mover;
-
-      let newObject = Object.assign({}, newMover);
-      if (coin) {
-        mover = new BlinkMover(newObject.mass, newObject.size, c.initialSpeed, newMoverColor);
-      } else {
-        mover = new FadeMover(newObject.mass, newObject.size, c.initialSpeed, newMoverColor);
-      }
       tempMovers.push(mover);
-
     }
+
+    this.createMoverColors(tempMovers);
     return tempMovers;
   }
 }

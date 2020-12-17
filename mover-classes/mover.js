@@ -1,6 +1,6 @@
 class Mover {
 
-  constructor(mass = 200, size = 100, startSpeed = 20, col = { h: 0, s: 0, l: 0, a: 0 }) {
+  constructor(mass = 200, size = 100, startSpeed = 20, col = { h: 0, s: 0, l: 1, a: 1 }) {
     //Create vector
     // const startSpeed = 10;
     const defaultAcceleration = 0;
@@ -94,9 +94,9 @@ class Mover {
 
 
 class FadeMover extends Mover {
-  constructor(mass = 200, size = 100, startSpeed = 20, col) {
+  constructor(mass = 200, size = 100, startSpeed = 20, col = { h: 0, s: 0, l: 1, a: 1 }) {
     const saturationVariance = 50;
-    super(mass = 200, size, startSpeed = 20, col);
+    super(mass = 200, size, startSpeed = 20, col = { h: 0, s: 0, l: 1, a: 1 });
     this.saturationChangeRate = random(0, 1);
     this.i = 0;
     this.col.s = 50;
@@ -127,10 +127,10 @@ class FadeMover extends Mover {
 }
 
 class BlinkMover extends FadeMover {
-  constructor(mass = 200, size = 100, startSpeed = 20, col) {
-    super(mass = 200, size, startSpeed = 20, col);
+  constructor(mass = 200, size = 100, startSpeed = 20, col = { h: 0, s: 0, l: 1, a: 1 }) {
+    super(mass = 200, size, startSpeed = 20, col = { h: 0, s: 0, l: 1, a: 1 });
     this.i = 0;
-    this.color = this.col;
+    this.col = col;
     this.blinkInterval = random(100, 300);
     this.disappearedColor = {
       h: 0,
@@ -145,7 +145,7 @@ class BlinkMover extends FadeMover {
     this.i++;
     super.update();
     if (this.i % this.blinkInterval < this.blinkInterval / 2) {
-      this.col = this.color;
+      this.col = this.col;
     } else {
       this.col = this.disappearedColor;
     }
