@@ -29,26 +29,22 @@ function sequenceSix(duration) {
 
   flash(12000);
 
-  stars = [];
-  shootingStars = [];
-  darkStars = [];
 
   setTimeout(() => {
-    addDarkStars(10);
+
+    darkStarSystem.addStars(100);
   }, 5000);
 
   setTimeout(() => {
-    addDarkStars(10);
+    darkStarSystem.addStars(10);
   }, 4000);
 
   setTimeout(() => {
     console.log('adding stars');
-    addShootingStars(10);
+    shootingStarSystem.addStars(10);
   }, 8000);
 
   setTimeout(() => {
-
-
 
     let starInterval = setInterval(() => {
       stars = []
@@ -58,13 +54,14 @@ function sequenceSix(duration) {
       setTimeout(() => {
 
         sequence = "opaqueBlack"
-        addShootingStars(10);
-        addBlinkers(300, { h: 0, s: 0, l: 100, a: 1 });
+        // addShootingStars(10);
+        backdrop.addBlinkers(300);
+        // starSystem.addBlinkers(300, { h: 0, s: 0, l: 100, a: 1 });
       }, 1000)
 
     }, 2000)
 
-    console.log(shootingStars);
+    console.log(shootingStarSystem);
     //When stars equal a certain density clear all the Intervals
 
     setTimeout(() => {

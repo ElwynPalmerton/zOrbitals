@@ -1,14 +1,24 @@
 let masterScore = [
   {
-    function: sequenceOne,
-    time: 30000,
+    function: prelude,
+    time: 5000,
+  },
+
+  {
+    function: intro,
+    time: 6000,
+  },
+
+  {
+    function: sequenceSix,
+    time: 50000,
   },
   {
     function: sequenceOneA,
     time: 5000,
   },
   {
-    function: sequenceTwo,
+    function: rainbowHive,
     time: 60000,
   },
   {
@@ -23,10 +33,7 @@ let masterScore = [
     function: sequenceFive,
     time: 8000,
   },
-  {
-    function: sequenceSix,
-    time: 50000,
-  },
+
   {
     function: sequenceSeven,
     time: 100000,
@@ -36,14 +43,15 @@ let masterScore = [
 
 let start = Date.now();
 
-let first = true;
 
 function sequencer(score) {
-  let i = 0;
-  sequenceIndex = 0;
+  let first = true;
+  // let i = 0;
+  let sequenceIndex = 0;
 
+  console.log('sequenceIndex at start', sequenceIndex);
   //console.log(start);
-  score[i].function(score[i].time);
+  score[sequenceIndex].function(score[sequenceIndex].time);
 
 
   setInterval(() => {
@@ -51,26 +59,27 @@ function sequencer(score) {
     console.log("time: ", parseInt(currentTime / 1000));
   }, 10000)
 
-  function nextSequence(i) {
+  function nextSequence(sequenceIndex) {
     let sequenceTimer = setTimeout(() => {
 
       // I don't need currentTime unless I want to do a check on the actual
       //... running time to correct for small timing errors.
 
       sequenceIndex++;
+      console.log("sequence index in master: ", sequenceIndex);
 
-      if (i < score.length) {
+      if (sequenceIndex < score.length) {
         score[sequenceIndex].function(score[sequenceIndex].time);
-        nextSequence(i);
+        nextSequence(sequenceIndex);
       } else {
         console.log("Done: Ran all sequences in score.");
       }
     }, score[sequenceIndex].time);
   }
 
-
   if (first) {
     first = false;
     nextSequence(0);
   }
+
 }

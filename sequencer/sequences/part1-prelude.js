@@ -1,14 +1,17 @@
 
-function sequenceOne(duration) {
+function prelude(duration) {
 
+  console.log("Part 1 - Prelude");
 
   //Background value is set.
   bgc = {
     h: 0,
     s: 0,
     l: 10,
-    a: 0,
+    a: 1,
   }
+
+  bgColor.setColor(bgc);
 
   //Background specs are set.
   const bgSpecs = {
@@ -23,7 +26,7 @@ function sequenceOne(duration) {
 
   //Set the background color every 20 milliseconds
   let backgroundInterval = setInterval(() => {
-    run ? backgroundSequencer(bgSpecs) : null;
+    run ? bgColor.backgroundSequencer(bgSpecs) : null;
   }, 20);
   // }
 
@@ -36,21 +39,31 @@ function sequenceOne(duration) {
   //   console.log(bgc);
   // }, 5000);
 
-
   let repeatTime = 3000;
 
-  repeater(system.addConstellation.bind(system), repeatTime, duration);
-
-
+  repeater(zSystem.addConstellation.bind(zSystem), repeatTime, duration);
 };
+
 
 
 function sequenceOneA(duration) {
 
-  console.log('sequenceOneA')
+  const bgSpecs = {
+    hueChangeRate: 0.5,
+    saturationMax: 20,
+    saturationMin: 0,
+    lightnessChangeRate: 0.017,
+    saturationChangeRate: 0.017,
+    lightnessMax: 15,
+    lightnessMin: 0,
+  }
+
+
+  console.log('Part 1.a. - Segue')
 
   let backgroundInterval = setInterval(() => {
-    run ? backgroundWhitener() : null;
+
+    run ? bgColor.backgroundSequencer(bgSpecs) : null;
   }, 20);
 
   setInterval(() => {
@@ -58,5 +71,4 @@ function sequenceOneA(duration) {
   }, duration);
 
   //log the background color every five seconds.
-
 }

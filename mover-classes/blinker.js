@@ -1,12 +1,7 @@
-class starfield {
+class Starfield {
   constructor(qty) {
-
     this.stars = [];
-
-    for (let i = 0; i < qty; i++) {
-      let star = new Blinker();
-      this.stars.push(star);
-    }
+    this.addBlinkers(qty);
   }
 
   update() {
@@ -14,6 +9,14 @@ class starfield {
       star.update();
     });
   }
+
+  addBlinkers(qty) {
+    for (let i = 0; i < qty; i++) {
+      let star = new Blinker();
+      this.stars.push(star);
+    }
+  }
+
 
   display() {
     this.stars.forEach(star => {
