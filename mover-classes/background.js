@@ -1,4 +1,5 @@
-class backgroundColor {
+class BackgroundColor {
+  //Initialized in setup with no arguments
   constructor() {
     this.h = 155;
     this.s = 100;
@@ -29,8 +30,8 @@ class backgroundColor {
 
   makeWhite() {
     this.h = 166;
-    this.s = 1;
-    this.l = 1;
+    this.s = 0;
+    this.l = 100;
     this.a = 1;
   }
 

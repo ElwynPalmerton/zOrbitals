@@ -1,12 +1,17 @@
 let masterScore = [
+  {
+    function: prelude,
+    time: 5000,
+  },
 
   {
     function: intro,
-    time: 60000,
+    time: 6000,
   },
+
   {
-    function: prelude,
-    time: 30000,
+    function: sequenceSix,
+    time: 50000,
   },
   {
     function: sequenceOneA,
@@ -28,10 +33,7 @@ let masterScore = [
     function: sequenceFive,
     time: 8000,
   },
-  {
-    function: sequenceSix,
-    time: 50000,
-  },
+
   {
     function: sequenceSeven,
     time: 100000,

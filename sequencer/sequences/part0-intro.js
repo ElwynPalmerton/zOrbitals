@@ -1,8 +1,8 @@
 function intro() {
 
-  console.log('hello');
+  console.log('Part - Intro');
 
-  starSystem.stars = [];
+  backdrop.stars = [];
   darkStarSystem.stars = []
 
 
@@ -18,7 +18,7 @@ function intro() {
 
   const emerald = createColor(143, 100, 73, 1);
   const black = createColor(0, 0, 0, 1);
-  const white = createColor(177, 88, 1, 1);
+  const white = createColor(0, 0, 100, 1);
 
 
 
@@ -43,7 +43,7 @@ function intro() {
 
 
   setTimeout(() => {
-    bgColor.setColor({ h: 0, s: 0, l: 100, a: 1 })
+    bgColor.setColor(white)
   }, 3000)
 
   setTimeout(() => {
@@ -52,20 +52,10 @@ function intro() {
 
 
   setTimeout(() => {
-    bgColor.setColor({ h: 0, s: 0, l: 100, a: 1 })
+    bgColor.setColor(white)
   }, 5000)
 
-
-  // setTimeout(() => {
-  //   bgColor.makeWhite();
-  // }, 3000)
-
-  // setInterval(() => {
-  //   bgColor.setColor({ h: 0, s: 0, l: 0, a: 1 })
-  //   setTimeout(() => {
-  //     bgColor.changeColor(200)
-  //   }, 500);
-  // }, 2000)
+}
 
 
 
@@ -88,11 +78,3 @@ function intro() {
   //   }, 20)
 
   // }, 3000)
-
-  // system = new constellationSystem();
-  // starSystem = new starfield(200);
-  // shootingStarSystem = new ShootingStarField(200);
-  // darkStarSystem = new DarkStarField(30);
-
-  // starSystem = new starfield(200);
-}

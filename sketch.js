@@ -18,6 +18,8 @@ const c = {
   topSpeed: 15,
 };
 
+let zSystem, backdrop, shootingStarSystem, darkStarSystem, bgColor;
+
 // let darkStars = [];
 let speed = 10;
 
@@ -34,36 +36,33 @@ function setup() {
   colorMode(HSB);
   createCanvas(windowWidth, windowHeight);
 
-  system = new constellationSystem();
-  starSystem = new starfield(200);
-  shootingStarSystem = new ShootingStarField(200);
-  darkStarSystem = new DarkStarField(30);
-  bgColor = new backgroundColor();
+  zSystem = new ConstellationSystem();               //A system of zOrbital .
+  backdrop = new Starfield(200);                  //The glimmering backdrop.
+  shootingStarSystem = new ShootingStarField(200);  //The zooming star field.
+  darkStarSystem = new DarkStarField(30);           //The dark stars
+  bgColor = new BackgroundColor();    //An object which contains methods for adjusting the bgc
 
   sequencer(masterScore);
 }
-setInterval(() => {
-  run ? console.log("bg in sketch: ", "h: ", bgColor.h, "s: ", bgColor.s, "l: ", bgColor.l, "a:", bgColor.a) : null;
-}, 1000)
+// setInterval(() => {
+//   run ? console.log("bg in sketch: ", "h: ", bgColor.h, "s: ", bgColor.s, "l: ", bgColor.l, "a:", bgColor.a) : null;
+// }, 1000)
 
 function draw() {
-
-
 
   translate(width / 2, height / 2);
   background(bgColor.h, bgColor.s, bgColor.l, bgColor.a);
 
+  backdrop.update();  //Starfield - the backdrop
+  backdrop.display();
 
-  starSystem.update();
-  starSystem.display();
+  zSystem.update();      //zOrbitals
+  zSystem.display();
 
-  system.update();
-  system.display();
-
-  shootingStarSystem.update();
+  shootingStarSystem.update();    //shooting stars
   shootingStarSystem.display();
 
-  darkStarSystem.update();
+  darkStarSystem.update();        //Dark stars
   darkStarSystem.display();
 
 }

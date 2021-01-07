@@ -13,16 +13,16 @@ function blackThenWhite() {
   white = {
     h: 0,
     s: 0,
-    l: 1,
+    l: 100,
     a: 1,
   }
 
   bgc = black;
 
   setInterval(() => {
-    bgc = white;
+    bgColor.setColor(white);
     setTimeout(() => {
-      bgc = black;
+      bgColor.setColor(black);
     })
   }, 8000)
 
@@ -31,14 +31,29 @@ function blackThenWhite() {
 
 function rainbowHive(duration) {
 
+  black = {
+    h: 0,
+    s: 0,
+    l: 0,
+    a: 0,
+  }
 
-  bgc.h = 0;
-  bgc.l = 0;
-  bgc.s = 0;
-  bgc.a = 0;
+  white = {
+    h: 0,
+    s: 0,
+    l: 100,
+    a: 1,
+  }
+  // bgColor.h = 0;
+  // bgColor.l = 0;
+  // bgColor.s = 0;
+  // bgColor.a = 0;
+
+  console.log('setting white');
+  bgColor.makeWhite();
 
 
-  console.log('sequence two');
+  console.log('Rainbow Hive');
 
   setTimeout(() => {
     console.log('whitestars');
@@ -46,10 +61,10 @@ function rainbowHive(duration) {
       { h: 0, s: 0, l: 100, a: 1 });
 
 
-    bgc.h = 0;
-    bgc.l = 0;
-    bgc.s = 0;
-    bgc.a = 0;
+    bgColor.h = 0;
+    bgColor.l = 0;
+    bgColor.s = 0;
+    bgColor.a = 0;
   }, 15000);
 
   setTimeout(() => {
@@ -58,11 +73,24 @@ function rainbowHive(duration) {
       { h: 0, s: 0, l: 0, a: 0.25 })
 
 
-    bgc.h = 0;
-    bgc.l = 0;
-    bgc.s = 0;
-    bgc.a = 0;
+    bgColor.h = 0;
+    bgColor.l = 0;
+    bgColor.s = 100;
+    bgColor.a = 1;
   }, 30000);
+
+
+
+  repeater(zSystem.addConstellation.bind(zSystem), 3000, duration);
+  // repeater(blackThenWhite, 9000, 10, duration);
+  setTimeout(() => {
+    // bgc.a = 0;
+  }, duration);
+
+}
+
+
+
 
   //Does it turn white again at any point?
   //1a. Gradually turns white.
@@ -78,13 +106,3 @@ function rainbowHive(duration) {
   //
   //Run the sequence with the timer on (log each second)
   //..and figure out exactly what is happening before finishing this.
-
-  repeater(system.addConstellation.bind(system), 3000, duration);
-  // repeater(blackThenWhite, 9000, 10, duration);
-  setTimeout(() => {
-    // bgc.a = 0;
-  }, duration);
-
-
-
-}

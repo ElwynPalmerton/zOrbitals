@@ -14,7 +14,7 @@ function sequenceFour(duration) {
 
   //Set the background color every 20 milliseconds
   let backgroundInterval = setInterval(() => {
-    run ? backgroundSequencer(bgSpecs) : null;
+    run ? bgColor.backgroundSequencer(bgSpecs) : null;
   }, 20);
   // }
 

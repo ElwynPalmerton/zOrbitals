@@ -1,4 +1,4 @@
-class constellationSystem {
+class ConstellationSystem {
   constructor() {
 
     this.i = 0;
