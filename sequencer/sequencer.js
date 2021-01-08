@@ -1,14 +1,20 @@
 let masterScore = [
+  // {   //part 0.a.
+  //   function: preludeFlash,
+  //   time: 6000,
+  // },
+  {   //part 0.a.
+    function: darkSequence,
+    time: 180000,
+  },
+  {  //part 0.b.
+    function: turbulantIntro,
+    time: 60000,
+  },
   {
     function: prelude,
-    time: 5000,
+    time: 50000,
   },
-
-  {
-    function: intro,
-    time: 6000,
-  },
-
   {
     function: sequenceSix,
     time: 50000,

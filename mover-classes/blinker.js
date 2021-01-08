@@ -1,7 +1,7 @@
 class Starfield {
   constructor(qty) {
     this.stars = [];
-    this.addBlinkers(qty);
+    this.addStars(qty);
   }
 
   update() {
@@ -10,13 +10,12 @@ class Starfield {
     });
   }
 
-  addBlinkers(qty) {
+  addStars(qty) {
     for (let i = 0; i < qty; i++) {
       let star = new Blinker();
       this.stars.push(star);
     }
   }
-
 
   display() {
     this.stars.forEach(star => {
@@ -24,8 +23,6 @@ class Starfield {
     });
   }
 }
-
-
 
 class Blinker {
   constructor(blinkerColor = { h: 10, s: 30, l: 100, a: 1 }) {
@@ -46,8 +43,13 @@ class Blinker {
     this.color.h = randomColor;
   }
 
+
+  rotate(angle = 0.001) {
+    this.angle += angle;
+  }
+
+
   update() {
-    this.angle += 0.001;
     if (this.glimmer) {
       this.size += 0.025;
       this.color.l += 1;
@@ -61,7 +63,7 @@ class Blinker {
 
   display() {
     push();
-
+    rotate(this.angle);
     //rotate(this.angle);
     noStroke();
     let c = this.color

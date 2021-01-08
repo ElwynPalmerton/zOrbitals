@@ -4,9 +4,9 @@ class ShootingStarField {
     this.addStars(qty);
   }
 
-  addStars(qty) {
+  addStars(qty, color) {
     for (let i = 0; i < qty; i++) {
-      let star = new ShootingStar();
+      let star = new ShootingStar(color);
       this.stars.push(star);
     }
   }
@@ -14,6 +14,12 @@ class ShootingStarField {
   changeColor(color) {
     this.stars.forEach(star => {
       star.color = color;
+    })
+  }
+
+  setVariance(newVariance) {
+    this.stars.forEach((star) => {
+      star.variance = newVariance;
     })
   }
 
@@ -46,12 +52,12 @@ class ShootingStar {
     this.size = 0;
     this.angle = 0;
 
-    color = {
-      h: 201,
-      s: 100,
-      l: 70,
-      a: 1,
-    }
+    // color = {
+    //   h: 201,
+    //   s: 100,
+    //   l: 70,
+    //   a: 1,
+    // }
 
     this.color = color
   }//
@@ -73,6 +79,8 @@ class ShootingStar {
       map(this.y / this.z, 0, 1, 0, windowHeight) +
       random(-this.variance, this.variance);
   }
+
+
 
   update(rotation) {
     //Passing a rotation variable into rotate only rotates the Starfield stars because the DarkStars have their own Context in their display method.

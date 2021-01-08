@@ -55,7 +55,7 @@ function sequenceSix(duration) {
 
         sequence = "opaqueBlack"
         // addShootingStars(10);
-        backdrop.addBlinkers(300);
+        backdrop.addStars(300);
         // starSystem.addBlinkers(300, { h: 0, s: 0, l: 100, a: 1 });
       }, 1000)
 

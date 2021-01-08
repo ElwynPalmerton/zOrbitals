@@ -30,23 +30,33 @@ function mousePressed() {
   run ? loop() : noLoop();
 }
 
+function clearCurrent() {
+  zSystem.constellationSets = [];
+  backdrop.stars = [];
+  shootingStarSystem.stars = [];
+  darkStarSystem.stars = []
+}
 
-function setup() {
-  angleMode(RADIANS);
-  colorMode(HSB);
-  createCanvas(windowWidth, windowHeight);
-
+function initialSequence() {
   zSystem = new ConstellationSystem();               //A system of zOrbital .
   backdrop = new Starfield(200);                  //The glimmering backdrop.
   shootingStarSystem = new ShootingStarField(200);  //The zooming star field.
   darkStarSystem = new DarkStarField(30);           //The dark stars
   bgColor = new BackgroundColor();    //An object which contains methods for adjusting the bgc
+}
 
+function setup() {
+  angleMode(RADIANS);
+  colorMode(HSB);
+  createCanvas(windowWidth, windowHeight);
+  bgColor = new BackgroundColor();
+  initialSequence();
   sequencer(masterScore);
+  // bgColor.makeWhite();
 }
 // setInterval(() => {
 //   run ? console.log("bg in sketch: ", "h: ", bgColor.h, "s: ", bgColor.s, "l: ", bgColor.l, "a:", bgColor.a) : null;
-// }, 1000)
+// }, 2000)
 
 function draw() {
 
