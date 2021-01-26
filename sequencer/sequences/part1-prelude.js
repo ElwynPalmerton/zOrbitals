@@ -4,14 +4,9 @@ function prelude(duration) {
   console.log("Part 1 - Prelude");
 
   //Background value is set.
-  bgc = {
-    h: 0,
-    s: 0,
-    l: 10,
-    a: 1,
-  }
-
-  bgColor.setColor(bgc);
+  clearCurrent();
+  initialSequence();
+  bgColor.setColor();
 
   //Background specs are set.
   const bgSpecs = {

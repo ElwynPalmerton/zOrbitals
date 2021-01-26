@@ -1,4 +1,4 @@
-console.log('new version 12.16')
+
 //???
 let scl = 0.1;
 let scale = 2;
@@ -23,21 +23,6 @@ let zSystem, backdrop, shootingStarSystem, darkStarSystem, bgColor;
 // let darkStars = [];
 let speed = 10;
 
-<<<<<<< HEAD
-
-let bgc = {
-  h: 250,
-  s: 30,
-  l: 11,
-  a: 1,
-};
-
-let lightnessIncreasing = true;
-
-let saturationIncreasing = true;
-
-=======
->>>>>>> testSequencer
 incrementingScl = true;
 
 function mousePressed() {
@@ -45,29 +30,40 @@ function mousePressed() {
   run ? loop() : noLoop();
 }
 
+function clearCurrent() {
+  zSystem.constellationSets = [];
+  backdrop.stars = [];
+  shootingStarSystem.stars = [];
+  darkStarSystem.stars = []
+}
 
-function setup() {
-  angleMode(RADIANS);
-  colorMode(HSB);
-  createCanvas(windowWidth, windowHeight);
-
+function initialSequence() {
   zSystem = new ConstellationSystem();               //A system of zOrbital .
   backdrop = new Starfield(200);                  //The glimmering backdrop.
   shootingStarSystem = new ShootingStarField(200);  //The zooming star field.
   darkStarSystem = new DarkStarField(30);           //The dark stars
   bgColor = new BackgroundColor();    //An object which contains methods for adjusting the bgc
+  bgLayer = new BackgroundColor();
+  bgLayer.makeTransparent();
+}
 
+function setup() {
+  angleMode(RADIANS);
+  colorMode(HSB);
+  createCanvas(windowWidth, windowHeight);
+  bgColor = new BackgroundColor();
+  initialSequence();
   sequencer(masterScore);
-  console.log('new version 12.16')
+  // bgColor.makeWhite();
 }
 // setInterval(() => {
 //   run ? console.log("bg in sketch: ", "h: ", bgColor.h, "s: ", bgColor.s, "l: ", bgColor.l, "a:", bgColor.a) : null;
-// }, 1000)
+// }, 2000)
 
 function draw() {
 
   translate(width / 2, height / 2);
-  background(bgColor.h, bgColor.s, bgColor.l, bgColor.a);
+  // background(bgColor.h, bgColor.s, bgColor.l, bgColor.a);
 
   backdrop.update();  //Starfield - the backdrop
   backdrop.display();
@@ -80,6 +76,8 @@ function draw() {
 
   darkStarSystem.update();        //Dark stars
   darkStarSystem.display();
+
+  bgLayer.display();
 
 }
 //End of draw()
