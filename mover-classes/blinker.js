@@ -11,6 +11,7 @@ class Starfield {
   }
 
   addStars(qty) {
+    console.log('adding stars');
     for (let i = 0; i < qty; i++) {
       let star = new Blinker();
       this.stars.push(star);

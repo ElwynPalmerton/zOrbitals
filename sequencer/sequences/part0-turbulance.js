@@ -32,6 +32,8 @@ function turbulantIntro() {
     clearCurrent();
     // bgColor.defaultBGSequence(30000)
     shootingStarSystem.addStars(200);
+
+
     const purpleSpecs = {
       hueChangeRate: 0,
       saturationMax: 20,
@@ -42,11 +44,12 @@ function turbulantIntro() {
       lightnessMin: 0,
     }
 
+
     const darkPurple = createColor(276, 29, 18, 1);
     bgColor.setColor(darkPurple);
-
-
   }
+
+  // Part 2 
 
   function randomVariance() {
     starFlash();
@@ -88,6 +91,7 @@ function turbulantIntro() {
       clearTimeout(varianceTimeout);
     }, duration);
   }
+
 
 
   function starFlash() {
@@ -133,6 +137,9 @@ function turbulantIntro() {
       star.color = { h: 0, s: 50, l: 90, a: 1 }
     })
   }
+
+
+  // Part 3 
 
   function augmentingVariance() {
 

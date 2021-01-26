@@ -8,9 +8,9 @@ function sequenceSix(duration) {
 
 
     function blackThenWhite() {
-      sequence = "white";
+      // sequence = "white";
       let sequenceSetter = setTimeout(() => {
-        sequence = "opaqueBlack";
+        // sequence = "opaqueBlack";
 
       }, 1000);
     }
@@ -22,16 +22,14 @@ function sequenceSix(duration) {
     setTimeout(() => {
       console.log('clearing');
       clearInterval(flashInterval);
-      sequence = "white";
+      // sequence = "white";
     }, duration)
 
   }
 
   flash(12000);
 
-
   setTimeout(() => {
-
     darkStarSystem.addStars(100);
   }, 5000);
 
@@ -45,20 +43,16 @@ function sequenceSix(duration) {
   }, 8000);
 
   setTimeout(() => {
-
     let starInterval = setInterval(() => {
       stars = []
       sequence = "white";
 
-
       setTimeout(() => {
-
         sequence = "opaqueBlack"
         // addShootingStars(10);
         backdrop.addStars(300);
         // starSystem.addBlinkers(300, { h: 0, s: 0, l: 100, a: 1 });
       }, 1000)
-
     }, 2000)
 
     console.log(shootingStarSystem);
@@ -72,6 +66,6 @@ function sequenceSix(duration) {
   }, 12000);
 
 
-  // cleanUp(duration);
+  cleanUp(duration);
 
 }

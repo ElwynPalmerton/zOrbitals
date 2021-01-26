@@ -43,6 +43,8 @@ function initialSequence() {
   shootingStarSystem = new ShootingStarField(200);  //The zooming star field.
   darkStarSystem = new DarkStarField(30);           //The dark stars
   bgColor = new BackgroundColor();    //An object which contains methods for adjusting the bgc
+  bgLayer = new BackgroundColor();
+  bgLayer.makeTransparent();
 }
 
 function setup() {
@@ -74,6 +76,8 @@ function draw() {
 
   darkStarSystem.update();        //Dark stars
   darkStarSystem.display();
+
+  bgLayer.display();
 
 }
 //End of draw()

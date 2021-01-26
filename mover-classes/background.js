@@ -27,6 +27,13 @@ class BackgroundColor {
     this.a = color.a;
   }
 
+  makeTransparent() {
+    this.h = 0;
+    this.s = 0;
+    this.l = 0;
+    this.a = 0;
+  }
+
   makeBlack() {
     this.h = 0;
     this.s = 0;
@@ -39,6 +46,10 @@ class BackgroundColor {
     this.s = 0;
     this.l = 100;
     this.a = 1;
+  }
+
+  display() {
+    background(this.h, this.s, this.l, this.a);
   }
 
   backgroundSequencer(specs) {

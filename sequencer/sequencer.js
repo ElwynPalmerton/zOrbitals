@@ -1,49 +1,61 @@
 let masterScore = [
+  {
+    function: prelude,
+    time: 10000,
+  },
+  {
+    function: rainbowHive,
+    time: 30000,
+  },
+  {
+    function: brightBurst,
+    time: 20000,
+  },
+  ///////////////////////SET ABOVE/////////////////
+  {
+    function: prelude,
+    time: 10000,
+  },
+  ///////////////////////BELOW NOT SET/////////////////
   // {   //part 0.a.
   //   function: preludeFlash,
   //   time: 6000,
   // },
-  {   //part 0.a.
-    function: darkSequence,
-    time: 180000,
-  },
-  {  //part 0.b.
-    function: turbulantIntro,
-    time: 60000,
-  },
-  {
-    function: prelude,
-    time: 50000,
-  },
-  {
-    function: sequenceSix,
-    time: 50000,
-  },
-  {
-    function: sequenceOneA,
-    time: 5000,
-  },
-  {
-    function: rainbowHive,
-    time: 60000,
-  },
-  {
-    function: sequenceThree,
-    time: 15000,
-  },
-  {
-    function: sequenceFour,
-    time: 10000,
-  },
-  {
-    function: sequenceFive,
-    time: 8000,
-  },
+  // {   //part 0.a.
+  //   function: darkSequence,
+  //   time: 60000,
+  // },
+  // {  //part 0.b.
+  //   function: turbulantIntro,
+  //   time: 60000,
+  // },
 
-  {
-    function: sequenceSeven,
-    time: 100000,
-  },
+  // {
+  //   function: sequenceSix,
+  //   time: 50000,
+  // },
+  // {
+  //   function: sequenceOneA,
+  //   time: 5000,
+  // },
+
+  // {
+  //   function: sequenceThree,
+  //   time: 15000,
+  // },
+  // {
+  //   function: sequenceFour,
+  //   time: 10000,
+  // },
+  // {
+  //   function: sequenceFive,
+  //   time: 8000,
+  // },
+
+  // {
+  //   function: sequenceSeven,
+  //   time: 100000,
+  // },
 
 ];
 
