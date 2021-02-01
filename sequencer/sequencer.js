@@ -1,21 +1,21 @@
 let masterScore = [
+  // {
+  //   function: prelude,
+  //   time: 10000,
+  // },
+  // {
+  //   function: rainbowHive,
+  //   time: 30000,
+  // },
+  // {
+  //   function: brightBurst,
+  //   time: 20000,
+  // },
   {
     function: prelude,
-    time: 10000,
-  },
-  {
-    function: rainbowHive,
     time: 30000,
   },
-  {
-    function: brightBurst,
-    time: 20000,
-  },
   ///////////////////////SET ABOVE/////////////////
-  {
-    function: prelude,
-    time: 10000,
-  },
   ///////////////////////BELOW NOT SET/////////////////
   // {   //part 0.a.
   //   function: preludeFlash,

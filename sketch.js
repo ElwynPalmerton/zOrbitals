@@ -56,9 +56,9 @@ function setup() {
   sequencer(masterScore);
   // bgColor.makeWhite();
 }
-// setInterval(() => {
-//   run ? console.log("bg in sketch: ", "h: ", bgColor.h, "s: ", bgColor.s, "l: ", bgColor.l, "a:", bgColor.a) : null;
-// }, 2000)
+setInterval(() => {
+  run ? console.log("bg in sketch: ", "h: ", bgColor.h, "s: ", bgColor.s, "l: ", bgColor.l, "a:", bgColor.a) : null;
+}, 2000)
 
 function draw() {
 
