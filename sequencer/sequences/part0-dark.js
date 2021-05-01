@@ -1,5 +1,5 @@
 function incrementShootingStarHue() {
-  console.log('changecolor');
+  console.log("changecolor");
   let col = createColor(0, 0, 100, 10);
 
   let incrementHue = setInterval(() => {
@@ -26,8 +26,7 @@ function incrementShootingStarHue() {
 }
 
 function darkSequence() {
-
-  console.log('prelude flash');
+  console.log("prelude flash");
 
   let darkScore = [
     {
@@ -51,22 +50,19 @@ function darkSequence() {
       shootingStarSystem.addStars(1, col);
       if (shootingStarSystem.stars.length > 100) {
         clearInterval(addOneStar);
-        console.log('clearing addOneStar');
+        console.log("clearing addOneStar");
       }
-    }, 500)
+    }, 500);
   }
 
   function changeStarColor() {
-
-
     setTimeout(() => {
       bgColor.makeWhite();
 
       setTimeout(() => {
         bgColor.makeBlack();
-      }, 100)
-
-    }, 3000)
+      }, 100);
+    }, 3000);
 
     //limit the duration on this.
     //incrementShootingStarHue(duration);  ---refactor like this.
